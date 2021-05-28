@@ -1,0 +1,43 @@
+.postsItem {
+    margin: 0 20px 30px;
+    background: rgba(255, 255, 255, .5);
+    padding: 5px;
+}
+
+.postsItem__inner {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.postsItem__avatar {
+    max-width: 80px;
+    max-height: 80px;
+    border: 2px solid #ffffff;
+    margin-right: 20px;
+    object-fit: cover;
+}
+
+.postsItem__messages {
+    display: inline-block;
+    padding: 10px;
+}
+
+.postsItem__activity {
+    display: flex;
+    justify-content: space-between;
+    background: #ccc;
+    padding: 2px 8px;
+}
+
+.postsItem__like {
+    font-size: 15px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.postsItem__send {
+    font-size: 15px;
+    cursor: pointer;
+    color: #535353;
+}

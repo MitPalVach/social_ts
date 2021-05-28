@@ -1,0 +1,41 @@
+.header {
+    grid-column: 1/6;
+    background: #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.header__inner {
+
+}
+
+.headerLogo {
+    width: 100px;
+    display: inline-block;
+}
+
+.headerTitle {
+    display: inline-block;
+    color: #000;
+    font-size: 44px;
+    padding-right: 24px;
+}
+
+.loginBlock {
+    font-size: 22px;
+    margin-right: 20px;
+    margin-top: 50px;
+}
+
+.loginBlock__btn {
+    text-decoration: none;
+    color: #000000;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.loginBlock__btn:hover {
+    text-decoration: underline;
+}
