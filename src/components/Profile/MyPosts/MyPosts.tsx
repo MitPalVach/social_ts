@@ -11,11 +11,9 @@ const MyPosts = () => {
                 <button>Введите сообщение</button>
             </div>
             <div className={styles.posts}>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
+                <Post message={'I lear ts'} likeCount={20}/>
+                <Post message={'It\'s to hard'} likeCount={10}/>
+                <Post message={'But it\'s ok'} likeCount={15}/>
             </div>
         </div>
     )
