@@ -1,4 +1,21 @@
-.posts {
+.profileImg {
+    width: 100%;
+    object-fit: cover;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.avatar {
+
+}
+
+.avatarImg {
+    width: 120px;
+    border: 3px solid #fff;
+    margin-bottom: 20px;
+}
+
+.myPosts {
 
 }
 

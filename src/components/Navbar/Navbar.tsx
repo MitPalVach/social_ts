@@ -1,50 +1,50 @@
 import styles from './Navbar.module.css';
-import React from "react";
-// import {NavLink} from "react-router-dom";
+import React from 'react';
+import {NavLink} from "react-router-dom";
 
 
 const Navbar = () => {
     return (
         <nav className={styles.navbar}>
             <div className={styles.navbarItem}>
-                <a className={styles.navbarItem__link}
-                   href={"/profile"}>
-                    Профиль</a>
+                <NavLink className={styles.navbarItem__link} activeClassName={styles.active}
+                   to={"/profile"}>
+                    Профиль</NavLink>
             </div>
             <div className={styles.navbarItem}>
-                <a className={styles.navbarItem__link}
-                   href={"/dialogs"} >
-                    Сообщения</a>
+                <NavLink className={styles.navbarItem__link} activeClassName={styles.active}
+                   to={"/dialogs"} >
+                    Сообщения</NavLink>
             </div>
             <div className={styles.navbarItem}>
-                <a className={styles.navbarItem__link}
-                   href={"/friends"} >
-                    Друзья</a>
+                <NavLink className={styles.navbarItem__link} activeClassName={styles.active}
+                   to={"/friends"} >
+                    Друзья</NavLink>
             </div>
             <div className={styles.navbarItem}>
-                <a className={styles.navbarItem__link}
-                   href={"/news"} >
-                    Новости</a>
+                <NavLink className={styles.navbarItem__link} activeClassName={styles.active}
+                   to={"/news"} >
+                    Новости</NavLink>
             </div>
             <div className={styles.navbarItem}>
-                <a className={styles.navbarItem__link}
-                   href={"/music"} >
-                    Музыка</a>
+                <NavLink className={styles.navbarItem__link} activeClassName={styles.active}
+                   to={"/music"} >
+                    Музыка</NavLink>
             </div>
             <div className={styles.navbarItem}>
-                <a className={styles.navbarItem__link}
-                   href={"/photo"} >
-                    Фото</a>
+                <NavLink className={styles.navbarItem__link} activeClassName={styles.active}
+                   to={"/photo"} >
+                    Фото</NavLink>
             </div>
             <div className={styles.navbarItem}>
-                <a className={styles.navbarItem__link}
-                   href={"/video"} >
-                    Видео</a>
+                <NavLink className={styles.navbarItem__link} activeClassName={styles.active}
+                   to={"/video"} >
+                    Видео</NavLink>
             </div>
             <div className={styles.navbarItem}>
-                <a className={styles.navbarItem__link}
-                   href={"/settings"} >
-                    Настройки</a>
+                <NavLink className={styles.navbarItem__link} activeClassName={styles.active}
+                   to={"/settings"} >
+                    Настройки</NavLink>
             </div>
         </nav>
     )

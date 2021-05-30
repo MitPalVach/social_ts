@@ -1,16 +1,18 @@
 import React from "react";
 import styles from './Post.module.css';
+import avatar_to_all from './../../../../images/avatar_to_all.png'
+
 
 type PostType = {
     message: string
     likeCount: number
 }
-const Post = (props:PostType) => {
+const Post = (props: PostType) => {
     return (
         <div className={styles.postsItem}>
             <div className={styles.postsItem__inner}>
                 <img className={styles.postsItem__avatar}
-                     src='../../../../images/avatar_to_all.png'
+                    src={avatar_to_all}
                      alt="avatar_to_all"/>
                 {props.message}
             </div>
