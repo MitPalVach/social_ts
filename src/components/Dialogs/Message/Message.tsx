@@ -6,7 +6,7 @@ type MessageTypes = {
     message: string
     id: number
 }
-const Message = (props: MessageTypes) => {
+const Message: React.FC<MessageTypes> = (props) => {
 
     return (
         <div>

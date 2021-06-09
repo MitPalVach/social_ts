@@ -11,9 +11,14 @@ import Music from "./components/Music/Music";
 import Photo from "./components/Photo/Photo";
 import Video from "./components/Video/Video";
 import Settings from "./components/Settings/Settings";
+import {StateType} from "./State";
 
 
-function App() {
+type PropsType = {
+    state: StateType
+
+}
+function App (props:PropsType) {
     return (
         <BrowserRouter>
             <div className={styles.container}>
@@ -22,14 +27,15 @@ function App() {
                     <Navbar/>
                     <div className={styles.content__wrapper}>
                         <div className={styles.content__inner}>
-                            <Route path={'/profile'} component={Profile}/>
-                            <Route path={'/dialogs'} component={Dialogs}/>
-                            <Route path={'/friends'} component={Friends}/>
-                            <Route path={'/news'} component={News}/>
-                            <Route path={'/music'} component={Music}/>
-                            <Route path={'/photo'} component={Photo}/>
-                            <Route path={'/video'} component={Video}/>
-                            <Route path={'/settings'} component={Settings}/>
+                            <Route path={'/profile'}
+                                   render={() => <Profile postData={props.state.profilePage.postData} />}/>
+                            <Route path={'/dialogs'} render={() => <Dialogs dialogs={props.state.dialogsPage.dialogs} messages={props.state.dialogsPage.messages}/>}/>
+                            <Route path={'/friends'} render={() => <Friends/>}/>
+                            <Route path={'/news'} render={() => <News/>}/>
+                            <Route path={'/music'} render={() => <Music/>}/>
+                            <Route path={'/photo'} render={() => <Photo/>}/>
+                            <Route path={'/video'} render={() => <Video/>}/>
+                            <Route path={'/settings'} render={() => <Settings/>}/>
                         </div>
                     </div>
                 </div>

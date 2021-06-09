@@ -8,7 +8,7 @@ type DialogItemTypes = {
     friendsAvatar: string
     name: string
 }
-const DialogItem = (props: DialogItemTypes) => {
+const DialogItem: React.FC<DialogItemTypes> = (props) => {
     return (
         <div className={styles.dialogs__item}>
             <NavLink className={styles.dialogs__itemLink}

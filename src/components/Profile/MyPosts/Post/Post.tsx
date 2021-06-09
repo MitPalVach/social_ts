@@ -1,24 +1,24 @@
 import React from "react";
 import styles from './Post.module.css';
 import avatar_to_all from './../../../../images/avatar_to_all.png'
+import {PostDataType} from "../../../../State";
 
 
 type PostType = {
-    message: string
-    likeCount: number
-    id: number
+   post: PostDataType
 }
-const Post = (props: PostType) => {
+const Post: React.FC<PostType> = (props) => {
     return (
         <div className={styles.postsItem}>
             <div className={styles.postsItem__inner}>
                 <img className={styles.postsItem__avatar}
                      src={avatar_to_all}
                      alt="avatar_to_all"/>
-                {props.message}
+                {props.post.message}
+                {props.post.id}
             </div>
             <div className={styles.postsItem__activity}>
-                <span className={styles.postsItem__like}>{props.likeCount} Нравится</span>
+                <span className={styles.postsItem__like}>{props.post.likeCount} Нравится</span>
                 <span className={styles.postsItem__send}>Написать сообщение</span>
             </div>
         </div>
