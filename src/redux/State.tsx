@@ -1,6 +1,10 @@
-import filin from "./images/friends_avatars/filin.jpeg";
-import sipuha from "./images/friends_avatars/sipuha.jpeg";
-import rybniyFilin from "./images/friends_avatars/rybniy-filin.jpeg";
+import filin from "../images/friends_avatars/filin.jpeg";
+import sipuha from "../images/friends_avatars/sipuha.jpeg";
+import rybniyFilin from "../images/friends_avatars/rybniy-filin.jpeg";
+import ava1 from '../images/ava_1.png';
+import ava2 from '../images/ava_2.png';
+import ava3 from '../images/ava_3.png';
+
 
 export type MessagesType = {
     id: number
@@ -16,6 +20,11 @@ export type PostDataType = {
     id: number
     likeCount: number
 }
+export type SidebarType = {
+    id:number
+    name: string
+    ava:string
+}
 export type ProfilePageType = {
     postData: Array<PostDataType>
 }
@@ -23,9 +32,13 @@ export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
 }
+export type FriendsOnline = {
+    sidebar: Array<SidebarType>
+}
 export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+    friendsOnline: FriendsOnline
 }
 
 let state:StateType = {
@@ -47,6 +60,13 @@ let state:StateType = {
             {id: 1, message: 'Hello'},
             {id: 2, message: 'Hi'},
             {id: 3, message: 'Bye'},
+        ]
+    },
+    friendsOnline: {
+        sidebar: [
+            {id: 1, name: 'Неясыть', ava: ava1},
+            {id: 2, name: 'Филин', ava: ava2},
+            {id: 3, name: 'Полярная сова', ava: ava3}
         ]
     }
 }

@@ -11,7 +11,7 @@ import Music from "./components/Music/Music";
 import Photo from "./components/Photo/Photo";
 import Video from "./components/Video/Video";
 import Settings from "./components/Settings/Settings";
-import {StateType} from "./State";
+import {StateType} from "./redux/State";
 
 
 type PropsType = {
@@ -24,7 +24,7 @@ function App (props:PropsType) {
             <div className={styles.container}>
                 <div className={styles.app__wrapper}>
                     <Header/>
-                    <Navbar/>
+                    <Navbar sidebar={props.state.friendsOnline.sidebar}/>
                     <div className={styles.content__wrapper}>
                         <div className={styles.content__inner}>
                             <Route path={'/profile'}

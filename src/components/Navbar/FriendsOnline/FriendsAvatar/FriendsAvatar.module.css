@@ -1,0 +1,32 @@
+.fOnline__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #cccccc;
+    padding: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.fOnline__inner:hover {
+    background: #000;
+}
+
+.fOnline__inner:hover .fOnline__name {
+    color: #ffffff;
+
+}
+
+.fOnline__ava {
+    width: 50px;
+    height: 50px;
+}
+
+.fOnline__name {
+    font-size: 16px;
+    color: #535353;
+    transition: all .5s;
+}
+

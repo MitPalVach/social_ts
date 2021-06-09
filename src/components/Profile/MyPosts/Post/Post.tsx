@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './Post.module.css';
 import avatar_to_all from './../../../../images/avatar_to_all.png'
-import {PostDataType} from "../../../../State";
+import {PostDataType} from "../../../../redux/State";
 
 
 type PostType = {
@@ -15,7 +15,6 @@ const Post: React.FC<PostType> = (props) => {
                      src={avatar_to_all}
                      alt="avatar_to_all"/>
                 {props.post.message}
-                {props.post.id}
             </div>
             <div className={styles.postsItem__activity}>
                 <span className={styles.postsItem__like}>{props.post.likeCount} Нравится</span>
