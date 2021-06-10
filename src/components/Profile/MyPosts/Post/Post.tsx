@@ -5,7 +5,7 @@ import {PostDataType} from "../../../../redux/State";
 
 
 type PostType = {
-   post: PostDataType
+    post: PostDataType
 }
 const Post: React.FC<PostType> = (props) => {
     return (

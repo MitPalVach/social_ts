@@ -20,13 +20,15 @@ export type PostDataType = {
     id: number
     likeCount: number
 }
+
 export type SidebarType = {
-    id:number
+    id: number
     name: string
-    ava:string
+    ava: string
 }
 export type ProfilePageType = {
     postData: Array<PostDataType>
+    newPostText: string
 }
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
@@ -41,20 +43,21 @@ export type StateType = {
     friendsOnline: FriendsOnline
 }
 
-let state:StateType = {
+let state: StateType = {
     profilePage: {
         postData: [
             {message: 'Hi, how are you?', id: 1, likeCount: 12},
             {message: 'What do you think about JS?', id: 2, likeCount: 22},
             {message: 'I learn not only JS but and TS!', id: 3, likeCount: 42},
             {message: 'Oh, it\'s cool', id: 4, likeCount: 23}
-        ]
+        ],
+        newPostText: 'www.mitpal.ru'
     },
     dialogsPage: {
         dialogs: [
-            {id:1, name: 'Tom', friendsAvatar: filin},
-            {id:2, name: 'Alex', friendsAvatar: sipuha},
-            {id:3, name: 'Jane', friendsAvatar: rybniyFilin}
+            {id: 1, name: 'Tom', friendsAvatar: filin},
+            {id: 2, name: 'Alex', friendsAvatar: sipuha},
+            {id: 3, name: 'Jane', friendsAvatar: rybniyFilin}
         ],
         messages: [
             {id: 1, message: 'Hello'},
@@ -71,4 +74,31 @@ let state:StateType = {
     }
 }
 
+let rerenderEntireTree = ()=> {
+    console.log('state changed')
+}
+
+export type NewPostType = {
+    id: number
+    message: string
+    likeCount: number
+}
+export const addPost = (postMessage: string) => {
+    let newPost = {
+        id: 5,
+        message: postMessage,
+        likeCount: 0
+    }
+    state.profilePage.postData.push(newPost)
+    state.profilePage.newPostText=''
+    rerenderEntireTree()
+}
+
+export const updateNewPost = (newText: string) => {
+    state.profilePage.newPostText = newText
+}
+
+export const subscribe = (observer:()=>void) => {
+rerenderEntireTree=observer
+}
 export default state;
