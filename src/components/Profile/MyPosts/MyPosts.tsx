@@ -11,16 +11,16 @@ type PropsType = {
     newPostText: string
 }
 const MyPosts: React.FC<PropsType> = (props) => {
-    let postElements = props.postData.map(p => <Post post={p}/>);
-    let newPostElement = React.createRef();
-    let addPost = (newPostElement:any) => {
-        let text = newPostElement.current.value
-        props.addPost(text)
-        props.updateNewPost('')
+    let postElements = props.postData.map(p => <Post key={p.id} post={p}/>);
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
+
+    let addPost = () => {
+        let text = newPostElement.current?.value
+        props.addPost(text || '')
     }
-    let onPostChange = (newPostElement:any) => {
-        let text = newPostElement.current.value
-        props.updateNewPost(text);
+    let onPostChange = () => {
+        let text = newPostElement.current?.value
+        props.updateNewPost(text || '');
     }
     return (
         <div>
@@ -29,11 +29,12 @@ const MyPosts: React.FC<PropsType> = (props) => {
                 <textarea className={styles.myPosts__input}
                           placeholder='Введите сообщение...'
                           value={props.newPostText}
-                          // ref={newPostElement}
+                          ref={newPostElement}
+                          onChange={onPostChange}
                 />
                 <button className={styles.myPosts__button}
                         onClick={() => {
-                            props.addPost(props.newPostText)
+                            addPost()
                         }}>Введите сообщение
                 </button>
             </div>
