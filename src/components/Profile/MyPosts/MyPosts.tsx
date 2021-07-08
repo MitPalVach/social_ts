@@ -1,26 +1,26 @@
 import React from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {PostDataType} from "../../../redux/State";
+import {ActionsTypes, addPostAC, PostDataType} from "../../../redux/State";
 
 
 type PropsType = {
     postData: Array<PostDataType>
-    addPost: (postMessage: string) => void
-    updateNewPost: (newText: string) => void
     newPostText: string
+    dispatch: (action: ActionsTypes) => void
 }
+
 const MyPosts: React.FC<PropsType> = (props) => {
     let postElements = props.postData.map(p => <Post key={p.id} post={p}/>);
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
-        let text = newPostElement.current?.value
-        props.addPost(text || '')
+        // let text = newPostElement.current?.value
+        props.dispatch(addPostAC(props.newPostText))
     }
     let onPostChange = () => {
         let text = newPostElement.current?.value
-        props.updateNewPost(text || '');
+        props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: text || ''})
     }
     return (
         <div>

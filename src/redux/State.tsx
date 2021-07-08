@@ -3,8 +3,11 @@ import sipuha from "../images/friends_avatars/sipuha.jpeg";
 import rybniyFilin from "../images/friends_avatars/rybniy-filin.jpeg";
 import ava1 from '../images/ava_1.png';
 import ava2 from '../images/ava_2.png';
-import ava3 from '../images/ava_3.png'
+import ava3 from '../images/ava_3.png';
 
+
+const ADD_POST = "ADD-POST"
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
 export type MessagesType = {
     id: number
@@ -43,11 +46,25 @@ export type RootStateType = {
 }
 export type StoreType = {
     _state: RootStateType
-    updateNewPost: (newText: string) => void
-    addPost: (postMessage: string) => void
     _onChange: () => void
     subscribe: (observer: () => void) => void
     getState: () => RootStateType
+    dispatch: (action: ActionsTypes) => void
+}
+
+// ======
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
+export const addPostAC = (postMessage: string) => {
+    return {
+        type: ADD_POST,
+        postMessage
+    } as const
+}
+export const updateNewPostTextAC = (newText: string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText
+    } as const
 }
 // =======
 
@@ -82,40 +99,30 @@ let store: StoreType = {
             ]
         }
     },
-
-    addPost(postMessage: string) {
-        const newPost = {
-            id: 5,
-            message: postMessage,
-            likeCount: 0
-        }
-        this._state.profilePage.postData.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._onChange()
-    },
-
-    updateNewPost(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._onChange()
-    },
-
     _onChange() {
         console.log('state changed')
     },
-
     subscribe(callback) {
         this._onChange = callback
     },
-
     getState() {
         return this._state
+    },
+    dispatch(action) {
+        if (action.type === ADD_POST) {
+            const newPost = {
+                id: 5,
+                message: action.postMessage,
+                likeCount: 0
+            }
+            this._state.profilePage.postData.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._onChange()
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+            this._state.profilePage.newPostText = action.newText
+            this._onChange()
+        }
     }
 }
-
-// export type NewPostType = {
-//     id: number
-//     message: string
-//     likeCount: number
-// }
 
 export default store;

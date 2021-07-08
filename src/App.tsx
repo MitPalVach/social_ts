@@ -11,14 +11,15 @@ import Music from "./components/Music/Music";
 import Photo from "./components/Photo/Photo";
 import Video from "./components/Video/Video";
 import Settings from "./components/Settings/Settings";
-import {StoreType} from "./redux/State";
+import {ActionsTypes, StoreType} from "./redux/State";
 
 
 type PropsType = {
- store: StoreType
+    store: StoreType
+    dispatch: (action: ActionsTypes) => void
 }
 
-const App:React.FC<PropsType> = (props) => {
+const App: React.FC<PropsType> = (props) => {
     const state = props.store.getState()
 
     return (
@@ -30,8 +31,7 @@ const App:React.FC<PropsType> = (props) => {
                     <div className={styles.content__inner}>
                         <Route path={'/profile'} render={() =>
                             <Profile profilePage={state.profilePage}
-                                     addPost={props.store.addPost.bind(props.store)}
-                                     updateNewPost={props.store.updateNewPost.bind(props.store)}
+                                     dispatch={props.store.dispatch.bind(props.store)}
                             />}/>
                         <Route path={'/dialogs'} render={() =>
                             <Dialogs dialogs={state.dialogsPage.dialogs}
