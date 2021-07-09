@@ -2,29 +2,29 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {ActionsTypes, DialogsPageType} from "../../redux/State";
-import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogsReducer";
+import {DialogsPageType} from "../../redux/store";
 
 
 type PropsType = {
     dialogsPage: DialogsPageType
-    newMessageBody: string
-    dispatch: (action: ActionsTypes) => void
+    sendMessage: () => void
+    newMessageBody: (body:string)=> void
 }
 const Dialogs: React.FC<PropsType> = (props) => {
+let state = props.dialogsPage
 
-    let dialogsElements = props.dialogsPage.dialogs.map(d =>
+    let dialogsElements = state.dialogs.map(d =>
         <DialogItem dialogs={d}/>);
-    let messagesElements = props.dialogsPage.messages.map(m =>
+    let messagesElements = state.messages.map(m =>
         <Message messages={m}/>);
-    let newMessageBody = props.dialogsPage.newMessageBody
+    let newMessageBody = state.newMessageBody
 
     let onSendMessageClick = () => {
-        props.dispatch(sendMessageAC())
+        props.sendMessage()
     }
-    let onNewMessageChange = (e: any) => {
+    let onNewMessageChange = (e:any) => {
         let body = e.target.value
-        props.dispatch(updateNewMessageBodyAC(body))
+        props.newMessageBody(body)
     }
     return (
         <div className={styles.dialogs}>

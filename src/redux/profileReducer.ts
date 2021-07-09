@@ -1,7 +1,19 @@
+import {ProfilePageType} from "./store";
+
 const ADD_POST = "ADD-POST"
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
-const profileReducer = (state: any, action: any) => {
+
+let initialState = {
+    postData: [
+        {message: 'Hi, how are you?', id: 1, likeCount: 12},
+        {message: 'What do you think about JS?', id: 2, likeCount: 22},
+        {message: 'I learn not only JS but and TS!', id: 3, likeCount: 42},
+        {message: 'Oh, it\'s cool', id: 4, likeCount: 23}
+    ],
+    newPostText: 'www.mitpal.ru'
+}
+const profileReducer = (state: ProfilePageType = initialState, action: any) => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {
@@ -22,7 +34,6 @@ const profileReducer = (state: any, action: any) => {
 export type ActionsTypes =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
-
 
 export const addPostAC = (postMessage: string) => {
     return {

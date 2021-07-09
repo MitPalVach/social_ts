@@ -1,28 +1,30 @@
 import React from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {ActionsTypes, PostDataType} from "../../../redux/State";
-import {addPostAC} from "../../../redux/profileReducer";
+import {PostDataType} from "../../../redux/store";
 
 
 type PropsType = {
-    postData: Array<PostDataType>
+    postData: PostDataType[]
     newPostText: string
-    dispatch: (action: ActionsTypes) => void
+    updateNewPostText: (text: string) => void
+    addPost: () => void
 }
 
 const MyPosts: React.FC<PropsType> = (props) => {
     let postElements = props.postData.map(p => <Post key={p.id} post={p}/>);
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    let addPost = () => {
-        // let text = newPostElement.current?.value
-        props.dispatch(addPostAC(props.newPostText))
+    let onAddPost = () => {
+        props.addPost()
     }
     let onPostChange = () => {
         let text = newPostElement.current?.value
-        props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: text || ''})
+        if (typeof text === "string") {
+            props.updateNewPostText(text)
+        }
     }
+
     return (
         <div>
             My posts
@@ -35,7 +37,7 @@ const MyPosts: React.FC<PropsType> = (props) => {
                 />
                 <button className={styles.myPosts__button}
                         onClick={() => {
-                            addPost()
+                            onAddPost()
                         }}>Введите сообщение
                 </button>
             </div>

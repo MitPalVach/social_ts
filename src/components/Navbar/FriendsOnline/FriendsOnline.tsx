@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './FriendsOnline.module.css';
-import {FriendsOnlineType} from "../../../redux/State";
+import {FriendsOnlineType} from "../../../redux/store";
 import FriendsAvatar from "./FriendsAvatar/FriendsAvatar";
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './Post.module.css';
 import avatar_to_all from './../../../../images/avatar_to_all.png'
-import {PostDataType} from "../../../../redux/State";
+import {PostDataType} from "../../../../redux/store";
 
 
 type PostType = {

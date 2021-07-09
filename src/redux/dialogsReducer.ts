@@ -1,7 +1,26 @@
+import filin from "../images/friends_avatars/filin.jpeg";
+import sipuha from "../images/friends_avatars/sipuha.jpeg";
+import rybniyFilin from "../images/friends_avatars/rybniy-filin.jpeg";
+import {DialogsPageType} from "./store";
+
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
-const dialogsReducer = (state: any, action: any) => {
+
+let initialState = {
+    dialogs: [
+        {id: 1, name: 'Tom', friendsAvatar: filin},
+        {id: 2, name: 'Alex', friendsAvatar: sipuha},
+        {id: 3, name: 'Jane', friendsAvatar: rybniyFilin}
+    ],
+    messages: [
+        {id: 1, message: 'Hello'},
+        {id: 2, message: 'Hi'},
+        {id: 3, message: 'Bye'},
+    ],
+    newMessageBody: ''
+}
+const dialogsReducer = (state:DialogsPageType=initialState, action: any) => {
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
