@@ -34,8 +34,10 @@ const App: React.FC<PropsType> = (props) => {
                                      dispatch={props.store.dispatch.bind(props.store)}
                             />}/>
                         <Route path={'/dialogs'} render={() =>
-                            <Dialogs dialogs={state.dialogsPage.dialogs}
-                                     messages={state.dialogsPage.messages}/>}/>
+                            <Dialogs dialogsPage={state.dialogsPage}
+                                     dispatch={props.store.dispatch.bind(props.store)}
+                                     newMessageBody={state.dialogsPage.newMessageBody}
+                            />}/>
                         <Route path={'/friends'} render={() => <Friends/>}/>
                         <Route path={'/news'} render={() => <News/>}/>
                         <Route path={'/music'} render={() => <Music/>}/>

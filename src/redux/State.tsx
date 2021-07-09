@@ -8,6 +8,8 @@ import ava3 from '../images/ava_3.png';
 
 const ADD_POST = "ADD-POST"
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
+const SEND_MESSAGE = 'SEND-MESSAGE'
 
 export type MessagesType = {
     id: number
@@ -35,6 +37,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
+    newMessageBody: string
 }
 export type FriendsOnline = {
     sidebar: Array<SidebarType>
@@ -51,21 +54,12 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionsTypes) => void
 }
+export type ActionsTypes =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof sendMessageAC>
+    | ReturnType<typeof updateNewMessageBodyAC>
 
-// ======
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
-export const addPostAC = (postMessage: string) => {
-    return {
-        type: ADD_POST,
-        postMessage
-    } as const
-}
-export const updateNewPostTextAC = (newText: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText
-    } as const
-}
 // =======
 
 let store: StoreType = {
@@ -89,7 +83,8 @@ let store: StoreType = {
                 {id: 1, message: 'Hello'},
                 {id: 2, message: 'Hi'},
                 {id: 3, message: 'Bye'},
-            ]
+            ],
+            newMessageBody: ''
         },
         friendsOnline: {
             sidebar: [
@@ -121,8 +116,40 @@ let store: StoreType = {
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText
             this._onChange()
+        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+            this._state.dialogsPage.newMessageBody = action.body
+            this._onChange()
+        } else if (action.type === SEND_MESSAGE) {
+            let body = this._state.dialogsPage.newMessageBody
+            this._state.dialogsPage.newMessageBody = ''
+            this._state.dialogsPage.messages.push({id: 4, message: body})
+            this._onChange()
         }
     }
+}
+
+export const addPostAC = (postMessage: string) => {
+    return {
+        type: ADD_POST,
+        postMessage
+    } as const
+}
+export const updateNewPostTextAC = (newText: string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText
+    } as const
+}
+export const sendMessageAC = () => {
+    return {
+        type: SEND_MESSAGE
+    } as const
+}
+export const updateNewMessageBodyAC = (body: string) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_BODY,
+        body
+    } as const
 }
 
 export default store;
