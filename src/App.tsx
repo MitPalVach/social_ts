@@ -26,7 +26,7 @@ const App: React.FC<PropsType> = (props) => {
         <div className={styles.container}>
             <div className={styles.app__wrapper}>
                 <Header/>
-                <Navbar sidebar={state.friendsOnline.sidebar}/>
+                <Navbar friendsOnline={state.friendsOnline}/>
                 <div className={styles.content__wrapper}>
                     <div className={styles.content__inner}>
                         <Route path={'/profile'} render={() =>

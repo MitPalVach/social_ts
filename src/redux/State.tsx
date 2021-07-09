@@ -4,12 +4,10 @@ import rybniyFilin from "../images/friends_avatars/rybniy-filin.jpeg";
 import ava1 from '../images/ava_1.png';
 import ava2 from '../images/ava_2.png';
 import ava3 from '../images/ava_3.png';
+import profileReducer, {addPostAC, updateNewPostTextAC} from "./profileReducer";
+import dialogsReducer, {sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
+import friendsOnlineReducer from "./friendsOnlineReducer";
 
-
-const ADD_POST = "ADD-POST"
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
-const SEND_MESSAGE = 'SEND-MESSAGE'
 
 export type MessagesType = {
     id: number
@@ -39,13 +37,13 @@ export type DialogsPageType = {
     messages: Array<MessagesType>
     newMessageBody: string
 }
-export type FriendsOnline = {
+export type FriendsOnlineType = {
     sidebar: Array<SidebarType>
 }
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    friendsOnline: FriendsOnline
+    friendsOnline: FriendsOnlineType
 }
 export type StoreType = {
     _state: RootStateType
@@ -104,52 +102,11 @@ let store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            const newPost = {
-                id: 5,
-                message: action.postMessage,
-                likeCount: 0
-            }
-            this._state.profilePage.postData.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._onChange()
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText
-            this._onChange()
-        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.dialogsPage.newMessageBody = action.body
-            this._onChange()
-        } else if (action.type === SEND_MESSAGE) {
-            let body = this._state.dialogsPage.newMessageBody
-            this._state.dialogsPage.newMessageBody = ''
-            this._state.dialogsPage.messages.push({id: 4, message: body})
-            this._onChange()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.friendsOnline = friendsOnlineReducer(this._state.friendsOnline, action)
+        this._onChange()
     }
-}
-
-export const addPostAC = (postMessage: string) => {
-    return {
-        type: ADD_POST,
-        postMessage
-    } as const
-}
-export const updateNewPostTextAC = (newText: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText
-    } as const
-}
-export const sendMessageAC = () => {
-    return {
-        type: SEND_MESSAGE
-    } as const
-}
-export const updateNewMessageBodyAC = (body: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY,
-        body
-    } as const
 }
 
 export default store;

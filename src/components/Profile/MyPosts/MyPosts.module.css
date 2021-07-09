@@ -9,6 +9,10 @@
     padding: 4px 10px;
 }
 
+button {
+    cursor: pointer;
+}
+
 .myPosts__button {
     border: none;
     font-size: 12px;
