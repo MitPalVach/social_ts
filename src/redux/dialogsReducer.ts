@@ -20,17 +20,24 @@ let initialState = {
     ],
     newMessageBody: ''
 }
-const dialogsReducer = (state:DialogsPageType=initialState, action: any) => {
+const dialogsReducer = (state: DialogsPageType = initialState, action: any) => {
 
+    let stateCopy = {
+        ...state,
+        messages: [...state.messages]
+    }
+    stateCopy.messages = [...state.messages]
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.body
+        case UPDATE_NEW_MESSAGE_BODY: {
+            stateCopy.newMessageBody = action.body
             break;
-        case SEND_MESSAGE:
-            let body = state.newMessageBody
-            state.newMessageBody = ''
-            state.messages.push({id: 4, message: body})
+        }
+        case SEND_MESSAGE: {
+            let body = stateCopy.newMessageBody
+            stateCopy.newMessageBody = ''
+            stateCopy.messages.push({id: 4, message: body})
             break;
+        }
     }
     return state
 }

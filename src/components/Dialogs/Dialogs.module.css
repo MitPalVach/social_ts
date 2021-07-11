@@ -3,6 +3,13 @@
 
 }
 
+.dir__title {
+    font-size: 20px;
+    line-height: 20px;
+    margin: 20px 0;
+    font-weight: 400;
+}
+
 .dialogUsers {
 
 }

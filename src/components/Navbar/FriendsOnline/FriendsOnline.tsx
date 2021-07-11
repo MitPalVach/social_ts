@@ -8,8 +8,8 @@ type PropsType ={
     friendsOnline: FriendsOnlineType
 }
 const FriendsOnline:React.FC<PropsType> = (props) => {
-
-    let friendsAvatar = props.friendsOnline.sidebar.map(f => <FriendsAvatar
+let state = props.friendsOnline
+    let friendsAvatar = state.sidebar.map(f => <FriendsAvatar
         key={f.id}
         name={f.name}
         ava={f.ava}

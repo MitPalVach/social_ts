@@ -13,20 +13,24 @@ let initialState = {
     ],
     newPostText: 'www.mitpal.ru'
 }
-const profileReducer = (state: ProfilePageType = initialState, action: any) => {
+const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
+    let stateCopy = {...state}
+    stateCopy.postData = [...state.postData]
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             const newPost = {
                 id: 5,
                 message: action.postMessage,
                 likeCount: 0
             }
-            state.postData.push(newPost)
-            state.newPostText = ''
+            stateCopy.postData.push(newPost)
+            stateCopy.newPostText = ''
             break;
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText
+        }
+        case UPDATE_NEW_POST_TEXT: {
+            stateCopy.newPostText = action.newText
             break;
+        }
     }
     return state
 }

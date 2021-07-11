@@ -1,20 +1,18 @@
 import React from "react";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import {ProfilePageType} from "../../redux/store";
 
 
 type PropsType = {
-    store: any
-
+    profilePage: ProfilePageType
 }
 const Profile: React.FC<PropsType> = (props) => {
-    let state = props.store.getState().profilePage
 
     return (
         <div>
-            <MyPostsContainer postData={state.postData}
-                              newPostText={state.newPostText}
-                              dispatch={props.store.dispatch}
-            />
+            <ProfileInfo/>
+            <MyPostsContainer profilePage={props.profilePage}/>
         </div>
     )
 }

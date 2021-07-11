@@ -1,15 +1,11 @@
 import styles from './Navbar.module.css';
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import FriendsOnline from "./FriendsOnline/FriendsOnline";
-import {FriendsOnlineType} from "../../redux/store";
+import FriendsOnlineContainer from "./FriendsOnline/FriendsOnlineContainer";
 
 
-type PropsType ={
-    friendsOnline: FriendsOnlineType
-}
+const Navbar:React.FC = () => {
 
-const Navbar:React.FC<PropsType> = (props) => {
     return (
         <nav className={styles.navbar}>
             <div className={styles.navbarItem}>
@@ -54,7 +50,7 @@ const Navbar:React.FC<PropsType> = (props) => {
             </div>
             <div className={styles.friendsOnline}>
 
-                <FriendsOnline friendsOnline={props.friendsOnline}/>
+                <FriendsOnlineContainer />
             </div>
         </nav>
     )

@@ -1,22 +1,24 @@
 import React from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {PostDataType} from "../../../redux/store";
+import {ProfilePageType} from "../../../redux/store";
 
 
 type PropsType = {
-    postData: PostDataType[]
-    newPostText: string
+    profilePage: ProfilePageType
+    addPost: (newPostText: string) => void
     updateNewPostText: (text: string) => void
-    addPost: () => void
 }
 
 const MyPosts: React.FC<PropsType> = (props) => {
-    let postElements = props.postData.map(p => <Post key={p.id} post={p}/>);
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    let state = props.profilePage
 
-    let onAddPost = () => {
-        props.addPost()
+    let postElements = state.postData.map(p => <Post key={p.id} post={p}/>);
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    let newPostText = state.newPostText
+
+    let onAddPost = (newPostText: string) => {
+        props.addPost(newPostText)
     }
     let onPostChange = () => {
         let text = newPostElement.current?.value
@@ -27,17 +29,17 @@ const MyPosts: React.FC<PropsType> = (props) => {
 
     return (
         <div>
-            My posts
+            <h4 className={styles.dir__title}> My posts </h4>
             <div>
                 <textarea className={styles.myPosts__input}
                           placeholder='Введите сообщение...'
-                          value={props.newPostText}
+                          value={newPostText}
                           ref={newPostElement}
                           onChange={onPostChange}
                 />
                 <button className={styles.myPosts__button}
                         onClick={() => {
-                            onAddPost()
+                            onAddPost(newPostText)
                         }}>Введите сообщение
                 </button>
             </div>
