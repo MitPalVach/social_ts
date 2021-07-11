@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
@@ -13,14 +13,14 @@ type PropsType = {
 const Dialogs: React.FC<PropsType> = (props) => {
     let state = props.dialogsPage
 
-    let dialogsElements = state.dialogs.map(d => <DialogItem dialogs={d}/>);
-    let messagesElements = state.messages.map(m => <Message messages={m}/>);
+    let dialogsElements = state.dialogs.map(d => <DialogItem key={d.id} dialogs={d}/>);
+    let messagesElements = state.messages.map(m => <Message key={m.id} messages={m}/>);
     let newMessageBody = state.newMessageBody
 
     let onSendMessageClick = () => {
         props.sendMessage()
     }
-    let onNewMessageChange = (e: any) => {
+    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value
         props.updateNewMessageBody(body)
     }
