@@ -1,19 +1,24 @@
-// import filin from "../images/friends_avatars/filin.jpeg";
-// import sipuha from "../images/friends_avatars/sipuha.jpeg";
-// import rybniyFilin from "../images/friends_avatars/rybniy-filin.jpeg";
-// import ava1 from '../images/ava_1.png';
-// import ava2 from '../images/ava_2.png';
-// import ava3 from '../images/ava_3.png';
-// import friendsOnlineReducer from "./friendsOnlineReducer";
 import {addPostAC, updateNewPostTextAC} from "./profileReducer";
 import {sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 
 
-export type MessagesType = {
+ type LocationType = {
+    city: string
+    country: string
+}
+type UsersPageType = {
+    id: number
+    photoUrl: string
+    followed: boolean
+    fullName: string
+    status: string
+    location: LocationType
+}
+type MessagesType = {
     id: number
     message: string
 }
-export type DialogsType = {
+type DialogsType = {
     id: number
     name: string
     friendsAvatar: string
@@ -44,6 +49,7 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     friendsOnline: FriendsOnlineType
+    usersPage: UsersPageType
 }
 export type StoreType = {
     _state: RootStateType

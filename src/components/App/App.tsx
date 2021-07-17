@@ -3,7 +3,7 @@ import styles from './App.module.css';
 import {Route} from 'react-router-dom';
 import Navbar from "../Navbar/Navbar";
 import Header from "../Header/Header";
-import Friends from "../Friends/Friends";
+import UsersContainer from "../Users/UsersContainer";
 import News from "../News/News";
 import Music from "../Music/Music";
 import Photo from "../Photo/Photo";
@@ -24,7 +24,7 @@ const App = () => {
                     <div className={styles.content__inner}>
                         <Route path={'/profile'} render={() => <ProfileContainer />}/>
                         <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
-                        <Route path={'/friends'} render={() => <Friends/>}/>
+                        <Route path={'/users'} render={() => <UsersContainer/>}/>
                         <Route path={'/news'} render={() => <News/>}/>
                         <Route path={'/music'} render={() => <Music/>}/>
                         <Route path={'/photo'} render={() => <Photo/>}/>

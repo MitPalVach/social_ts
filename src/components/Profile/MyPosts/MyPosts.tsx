@@ -1,4 +1,4 @@
-import React from "react";
+import React, {KeyboardEvent} from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {ProfilePageType} from "../../../redux/store";
@@ -26,6 +26,10 @@ const MyPosts: React.FC<PropsType> = (props) => {
             props.updateNewPostText(text)
         }
     }
+    const handleKeyDown = (e:KeyboardEvent<HTMLElement>) => {
+        if (e.key === 'Enter')
+            onAddPost(newPostText)
+    }
 
     return (
         <div>
@@ -35,6 +39,7 @@ const MyPosts: React.FC<PropsType> = (props) => {
                           placeholder='Введите сообщение...'
                           value={newPostText}
                           ref={newPostElement}
+                          onKeyPress={handleKeyDown}
                           onChange={onPostChange}
                 />
                 <button className={styles.myPosts__button}

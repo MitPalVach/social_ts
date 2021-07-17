@@ -20,7 +20,7 @@ const Navbar:React.FC = () => {
             </div>
             <div className={styles.navbarItem}>
                 <NavLink className={styles.navbarItem__link} activeClassName={styles.active}
-                   to={"/friends"} >
+                   to={"/users"} >
                     Друзья</NavLink>
             </div>
             <div className={styles.navbarItem}>

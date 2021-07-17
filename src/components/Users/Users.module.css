@@ -1,0 +1,61 @@
+.usersInner {
+    position: relative;
+}
+
+.usersWrapper {
+    display: flex;
+}
+
+.users__leftSide {
+    text-align: center;
+    margin-right: 30px;
+}
+
+.usersPhoto {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10%;
+    border: #ffffff 2px solid;
+}
+
+.usersBtn {
+    border: none;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: #535353;
+    cursor: pointer;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.users__rightSide {
+
+}
+
+.pagination {
+    color: #535353;
+    font-size: 22px;
+    width: 100%;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.paginationSelect {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+

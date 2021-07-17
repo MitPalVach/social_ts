@@ -11,7 +11,8 @@ let initialState = {
         {message: 'I learn not only JS but and TS!', id: 3, likeCount: 42},
         {message: 'Oh, it\'s cool', id: 4, likeCount: 23}
     ],
-    newPostText: 'www.mitpal.ru'
+    // newPostText: 'www.mitpal.ru'
+    newPostText: ''
 }
 const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
 

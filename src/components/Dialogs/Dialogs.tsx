@@ -1,11 +1,12 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {DialogsPageType} from "../../redux/store";
 
 
-type PropsType = {
+
+export type PropsType = {
     dialogsPage: DialogsPageType
     sendMessage: () => void
     updateNewMessageBody: (body: string) => void
@@ -24,6 +25,10 @@ const Dialogs: React.FC<PropsType> = (props) => {
         let body = e.target.value
         props.updateNewMessageBody(body)
     }
+    const handleKeyDown = (e:KeyboardEvent<HTMLElement>) => {
+        if (e.key === 'Enter')
+            onSendMessageClick()
+    }
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogUsers}>
@@ -38,7 +43,9 @@ const Dialogs: React.FC<PropsType> = (props) => {
                     <textarea className={styles.dialogMessages__input}
                               placeholder='Введите сообщение...'
                               value={newMessageBody}
-                              onChange={onNewMessageChange}/>
+                              onChange={onNewMessageChange}
+                    onKeyPress={handleKeyDown}
+                    />
                     <button className={styles.dialogMessages__btn}
                             onClick={onSendMessageClick}
                     >
