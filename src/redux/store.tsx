@@ -2,15 +2,18 @@ import {addPostAC, updateNewPostTextAC} from "./profileReducer";
 import {sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 
 
- type LocationType = {
+type LocationType = {
     city: string
     country: string
 }
 type UsersPageType = {
     id: number
-    photoUrl: string
+    photos: {
+        small: string
+        large: string
+    }
     followed: boolean
-    fullName: string
+    name: string
     status: string
     location: LocationType
 }
