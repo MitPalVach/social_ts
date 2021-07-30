@@ -1,11 +1,11 @@
 import React, {KeyboardEvent} from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {ProfilePageType} from "../../../redux/store";
+import {ProfileUserType} from "../../../redux/profileReducer";
 
 
 type PropsType = {
-    profilePage: ProfilePageType
+    profilePage: ProfileUserType
     addPost: (newPostText: string) => void
     updateNewPostText: (text: string) => void
 }

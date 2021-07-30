@@ -1,12 +1,12 @@
 import React from "react";
-import {ActionsTypes, ProfilePageType, RootStateType} from "../../../redux/store";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
+import {ActionsTypes, RootStateType} from "../../../redux/store";
+import {addPostAC, ProfileUserType, updateNewPostTextAC} from "../../../redux/profileReducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 
 
 type PropsType = {
-    profilePage:ProfilePageType
+    profilePage:ProfileUserType
 }
 
 let mapStateToProps = (state: RootStateType) => {

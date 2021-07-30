@@ -1,21 +1,77 @@
-import {ProfilePageType} from "./store";
+import {PostDataType} from "./store";
+
 
 const ADD_POST = "ADD-POST"
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
-
-let initialState = {
-    postData: [
-        {message: 'Hi, how are you?', id: 1, likeCount: 12},
+// let initialState = {
+//     postData: [
+//         {message: 'Hi, how are you?', id: 1, likeCount: 12},
+//         {message: 'What do you think about JS?', id: 2, likeCount: 22},
+//         {message: 'I learn not only JS but and TS!', id: 3, likeCount: 42},
+//         {message: 'Oh, it\'s cool', id: 4, likeCount: 23}
+//     ],
+//     // newPostText: 'www.mitpal.ru'
+//     newPostText: '',
+//     profile: null,
+// }
+export type ProfileUserType = {
+    profile: {
+        userId: number
+        lookingForAJob: boolean
+        lookingForAJobDescription: string
+        fullName: string
+        contacts: ContactsType
+        photos: {
+            small: string
+            large: string
+        },
+    }
+    postData: Array<PostDataType>
+    newPostText: string
+}
+type ContactsType = {
+    github: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
+}
+const initialState = {
+    profile: {
+        userId: 2,
+        lookingForAJob: false,
+        lookingForAJobDescription: '',
+        fullName: '',
+        contacts: {
+            github: '',
+            vk: "",
+            facebook: "",
+            instagram: "",
+            twitter: "",
+            website: "",
+            youtube: "",
+            mainLink: "",
+        },
+        photos: {
+            small: '',
+            large: '',
+        }
+    },
+    postData: [{message: 'Hi, how are you?', id: 1, likeCount: 12},
         {message: 'What do you think about JS?', id: 2, likeCount: 22},
         {message: 'I learn not only JS but and TS!', id: 3, likeCount: 42},
-        {message: 'Oh, it\'s cool', id: 4, likeCount: 23}
-    ],
-    // newPostText: 'www.mitpal.ru'
+        {message: 'Oh, it\'s cool', id: 4, likeCount: 23}],
     newPostText: ''
 }
-const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
 
+type InitStateType = typeof initialState
+
+const profileReducer = (state:InitStateType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
@@ -35,6 +91,9 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 newPostText: action.newText
             }
         }
+        case "SET_USER_PROFILE": {
+            return {...state, profile: action.profile}
+        }
     }
     return state
 }
@@ -42,6 +101,7 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
 export type ActionsTypes =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof setUserProfile>
 
 export const addPostAC = (postMessage: string) => {
     return {
@@ -53,6 +113,12 @@ export const updateNewPostTextAC = (newText: string) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText
+    } as const
+}
+export const setUserProfile = (profile: ProfileUserType) => {
+    return {
+        type: SET_USER_PROFILE,
+        profile
     } as const
 }
 

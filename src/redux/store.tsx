@@ -1,17 +1,19 @@
 import {addPostAC, updateNewPostTextAC} from "./profileReducer";
 import {sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 
-
+type PhotosType = {
+    photos: {
+        small: string
+        large: string
+    }
+}
 type LocationType = {
     city: string
     country: string
 }
 type UsersPageType = {
     id: number
-    photos: {
-        small: string
-        large: string
-    }
+    photos: PhotosType
     followed: boolean
     name: string
     status: string
@@ -39,6 +41,7 @@ export type SidebarType = {
 export type ProfilePageType = {
     postData: Array<PostDataType>
     newPostText: string
+    photos: PhotosType
 }
 export type DialogsPageType = {
     dialogs: Array<DialogsType>

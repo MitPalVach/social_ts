@@ -39,22 +39,12 @@ class UsersContainer extends React.Component<UsersPropsType, UsersPropsType> {
         })
     }
 
-    // onPageChanged = (pageNumber: number) => {
-    //     this.props.toggleIsFetching(true);
-    //     this.props.setCurrentPage(pageNumber)
-    //     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
-    //         this.props.toggleIsFetching(false)
-    //         this.props.setUsers(response.data.items)
-    //     })
-    // }
-
     render() {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
-                // onPageChanged={this.onPageChanged}
                    onPageChanged={this.props.onPageChanged}
                    usersPage={this.props.usersPage}
                    follow={this.props.follow}
