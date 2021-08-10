@@ -5,9 +5,9 @@ import styles from './Header.module.css'
 
 type PropsType = {
     isAuth: boolean
-    login:string | null
+    login: string | null
 }
-const Header:React.FC<PropsType> = (props) => {
+const Header: React.FC<PropsType> = (props) => {
     return (
         <header className={styles.header}>
             <a className={styles.header__inner} href={"/profile"}>
