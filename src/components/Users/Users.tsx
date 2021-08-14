@@ -48,7 +48,6 @@ const Users = (props: UsersType): JSX.Element => {
                                     headers: {'API-KEY': '411482a7-ac02-48c2-a201-383524308513'},
                                 })
                                     .then(response => {
-                                        debugger
                                         if (response.data.resultCode === 0)
                                             props.unfollow(u.id)
                                     })
@@ -60,7 +59,6 @@ const Users = (props: UsersType): JSX.Element => {
                                     headers: {'API-KEY': '411482a7-ac02-48c2-a201-383524308513'},
                                 })
                                     .then(response => {
-                                        debugger
                                         if (response.data.resultCode === 0)
                                             props.follow(u.id)
                                     })
