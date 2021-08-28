@@ -15,6 +15,7 @@ type UsersType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     toggleFollowingProgress: (isFetching: boolean, id: number) => void
+    isFetching: boolean
 }
 const Users = (props: UsersType): JSX.Element => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -42,8 +43,7 @@ const Users = (props: UsersType): JSX.Element => {
                     </div>
                     <div>
                         {u.followed
-                            // @ts-ignore
-                            ? <button disabled={props.toggleFollowingProgress.some(id => id === u.id)} onClick={() => {
+                            ? <button disabled={props.isFetching} onClick={() => {
                                 props.toggleFollowingProgress(true, u.id)
                                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                                     withCredentials: true,
@@ -57,8 +57,7 @@ const Users = (props: UsersType): JSX.Element => {
                                     })
                                 props.unfollow(u.id)
                             }}>Unfollow</button>
-                            // @ts-ignore
-                            : <button disabled={props.toggleFollowingProgress.some(id => id === u.id)} onClick={() => {
+                            : <button disabled={props.isFetching} onClick={() => {
                                 props.toggleFollowingProgress(true, u.id)
 
                                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
