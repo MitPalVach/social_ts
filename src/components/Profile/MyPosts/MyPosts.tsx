@@ -26,8 +26,8 @@ const MyPosts: React.FC<PropsType> = (props) => {
             props.updateNewPostText(text)
         }
     }
-    const handleKeyDown = (e:KeyboardEvent<HTMLElement>) => {
-        if (e.key === 'Enter')
+    const handleKeyDown = (e: KeyboardEvent<HTMLElement>) => {
+        if (e.ctrlKey && e.key === 'Enter')
             onAddPost(newPostText)
     }
 

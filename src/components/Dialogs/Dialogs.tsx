@@ -26,7 +26,7 @@ const Dialogs: React.FC<PropsType> = (props) => {
         props.updateNewMessageBody(body)
     }
     const handleKeyDown = (e:KeyboardEvent<HTMLElement>) => {
-        if (e.key === 'Enter')
+        if (e.ctrlKey && e.key === 'Enter')
             onSendMessageClick()
     }
     return (

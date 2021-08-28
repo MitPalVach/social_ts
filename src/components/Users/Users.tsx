@@ -3,7 +3,6 @@ import styles from "./Users.module.css";
 import userPhoto from "./avatar_to_all.png";
 import {UserType} from "../../redux/usersReducer";
 import {NavLink} from 'react-router-dom';
-import axios from "axios";
 
 
 type UsersType = {
@@ -14,7 +13,6 @@ type UsersType = {
     onPageChanged: (pageNumber: number) => void
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    toggleFollowingProgress: (isFetching: boolean, id: number) => void
     isFetching: boolean
 }
 const Users = (props: UsersType): JSX.Element => {
@@ -26,54 +24,29 @@ const Users = (props: UsersType): JSX.Element => {
 
     return (
         <div className={styles.usersInner}>
-            <div>
-                {pages.map((p, index) => {
-                    return <span key={index} className={props.currentPage === p ? styles.selectedPage : ""}
+            <div className={styles.usersPagination}>
+                {pages.map((p) => {
+                    return <span key={p} className={props.currentPage === p ? styles.selectedPage : ""}
                                  onClick={() => props.onPageChanged(p)}
                     >{p}</span>
                 })}
             </div>
             {props.usersPage.map(u => <div key={u.id}>
-                <span>
-                    <div>
-                        <NavLink to={'/profile/' + u.id}>
+                <div className={styles.ss}>
+                    <NavLink to={'/profile/' + u.id}>
                         <img className={styles.usersPhoto} alt={'user_photo'}
                              src={u.photos.small !== null ? u.photos.small : userPhoto}/>
-                            </NavLink>
-                    </div>
+                    </NavLink>
                     <div>
                         {u.followed
                             ? <button disabled={props.isFetching} onClick={() => {
-                                props.toggleFollowingProgress(true, u.id)
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                    withCredentials: true,
-                                    headers: {'API-KEY': '411482a7-ac02-48c2-a201-383524308513'},
-                                })
-                                    .then(response => {
-                                        if (response.data.resultCode === 0) {
-                                            props.unfollow(u.id)
-                                        }
-                                        props.toggleFollowingProgress(false, u.id)
-                                    })
-                                props.unfollow(u.id)
+                               props.unfollow(u.id)
                             }}>Unfollow</button>
                             : <button disabled={props.isFetching} onClick={() => {
-                                props.toggleFollowingProgress(true, u.id)
-
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                    withCredentials: true,
-                                    headers: {'API-KEY': '411482a7-ac02-48c2-a201-383524308513'},
-                                })
-                                    .then(response => {
-                                        if (response.data.resultCode === 0) {
-                                            props.follow(u.id)
-                                        }
-                                        props.toggleFollowingProgress(false, u.id)
-                                    })
+                                props.follow(u.id)
                             }}>Follow</button>}
                     </div>
-                </span>
-                <span>
+                    <span>
                     <span>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
@@ -83,6 +56,7 @@ const Users = (props: UsersType): JSX.Element => {
                         <div>{"u.location.city"}</div>
                     </span>
                 </span>
+                </div>
             </div>)}
         </div>
     );
