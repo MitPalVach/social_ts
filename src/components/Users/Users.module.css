@@ -50,13 +50,17 @@
 .usersPagination span{
     padding: 10px;
 }
-
+.pages {
+    cursor: pointer;
+    color: #535353;
+}
 .selectedPage {
     font-weight: 700;
     text-decoration: underline;
+
 }
 
-.ss {
+.usersItems {
     margin: 10px;
     background: white;
     padding: 10px;

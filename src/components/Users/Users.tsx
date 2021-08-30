@@ -14,6 +14,7 @@ type UsersType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     isFetching: boolean
+    followingInProgress: Array<number>
 }
 const Users = (props: UsersType): JSX.Element => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -26,23 +27,23 @@ const Users = (props: UsersType): JSX.Element => {
         <div className={styles.usersInner}>
             <div className={styles.usersPagination}>
                 {pages.map((p) => {
-                    return <span key={p} className={props.currentPage === p ? styles.selectedPage : ""}
+                    return <span key={p} className={props.currentPage === p ? styles.selectedPage : styles.pages}
                                  onClick={() => props.onPageChanged(p)}
                     >{p}</span>
                 })}
             </div>
             {props.usersPage.map(u => <div key={u.id}>
-                <div className={styles.ss}>
+                <div className={styles.usersItems}>
                     <NavLink to={'/profile/' + u.id}>
                         <img className={styles.usersPhoto} alt={'user_photo'}
                              src={u.photos.small !== null ? u.photos.small : userPhoto}/>
                     </NavLink>
                     <div>
                         {u.followed
-                            ? <button disabled={props.isFetching} onClick={() => {
+                            ? <button disabled={props.followingInProgress.includes(u.id)} onClick={() => {
                                props.unfollow(u.id)
                             }}>Unfollow</button>
-                            : <button disabled={props.isFetching} onClick={() => {
+                            : <button disabled={props.followingInProgress.includes(u.id)} onClick={() => {
                                 props.follow(u.id)
                             }}>Follow</button>}
                     </div>

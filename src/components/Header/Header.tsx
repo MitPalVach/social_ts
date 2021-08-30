@@ -18,8 +18,8 @@ const Header: React.FC<PropsType> = (props) => {
                 <h1 className={styles.headerTitle}>owlbook.com</h1>
             </a>
             <div className={styles.loginBlock}>
-                {props.isAuth ? props.login :
-                    <NavLink className={styles.loginBlock__btn} to={'/login'}>Log in</NavLink>}
+                {props.isAuth ? props.login
+                    : <NavLink className={styles.loginBlock__btn} to={'/login'}>Log in</NavLink>}
             </div>
         </header>
     )

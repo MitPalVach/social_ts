@@ -1,4 +1,5 @@
 import {PostDataType} from "./store";
+import {usersApi} from "../api/api";
 
 
 const ADD_POST = "ADD-POST"
@@ -71,7 +72,7 @@ const initialState = {
 
 type InitStateType = typeof initialState
 
-const profileReducer = (state:InitStateType = initialState, action: ActionsTypes) => {
+const profileReducer = (state: InitStateType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
@@ -120,6 +121,11 @@ export const setUserProfile = (profile: ProfileUserType) => {
         type: SET_USER_PROFILE,
         profile
     } as const
+}
+export const getUserProfile = (userId: number) => (dispatch: any) => {
+    usersApi.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data))
+    })
 }
 
 export default profileReducer
