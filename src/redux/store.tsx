@@ -1,5 +1,6 @@
 import {addPostAC, updateNewPostTextAC} from "./profileReducer";
 import {sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
+import {AuthType} from "./authReducer";
 
 type PhotosType = {
     photos: {
@@ -56,6 +57,7 @@ export type RootStateType = {
     dialogsPage: DialogsPageType
     friendsOnline: FriendsOnlineType
     usersPage: UsersPageType
+    auth: AuthType
 }
 export type StoreType = {
     _state: RootStateType

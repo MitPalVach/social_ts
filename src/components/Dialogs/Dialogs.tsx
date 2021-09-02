@@ -3,13 +3,14 @@ import styles from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {DialogsPageType} from "../../redux/store";
-
+import {Redirect} from "react-router-dom";
 
 
 export type PropsType = {
     dialogsPage: DialogsPageType
     sendMessage: () => void
     updateNewMessageBody: (body: string) => void
+    isAuth: boolean
 }
 const Dialogs: React.FC<PropsType> = (props) => {
     let state = props.dialogsPage
@@ -25,17 +26,20 @@ const Dialogs: React.FC<PropsType> = (props) => {
         let body = e.target.value
         props.updateNewMessageBody(body)
     }
-    const handleKeyDown = (e:KeyboardEvent<HTMLElement>) => {
+    const handleKeyDown = (e: KeyboardEvent<HTMLElement>) => {
         if (e.ctrlKey && e.key === 'Enter')
             onSendMessageClick()
     }
+    if (!props.isAuth) return <Redirect to={'/login'}/>
+
+
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogUsers}>
                 {dialogsElements}
             </div>
             <div className={styles.dialogMessages__wrapper}>
-            <h4 className={styles.dir__title}> Dialogs </h4>
+                <h4 className={styles.dir__title}> Dialogs </h4>
                 <div className={styles.dialogMessages}>
                     {messagesElements}
                 </div>
@@ -44,7 +48,7 @@ const Dialogs: React.FC<PropsType> = (props) => {
                               placeholder='Введите сообщение...'
                               value={newMessageBody}
                               onChange={onNewMessageChange}
-                    onKeyPress={handleKeyDown}
+                              onKeyPress={handleKeyDown}
                     />
                     <button className={styles.dialogMessages__btn}
                             onClick={onSendMessageClick}

@@ -11,6 +11,7 @@ import Settings from "../Settings/Settings";
 import DialogsContainer from "../Dialogs/DialogsContainer";
 import ProfileContainer from "../Profile/ProfileContainer";
 import HeaderContainer from "../Header/HeaderContainer";
+import Login from "../Login/Login";
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
                         <Route path={'/photo'} render={() => <Photo/>}/>
                         <Route path={'/video'} render={() => <Video/>}/>
                         <Route path={'/settings'} render={() => <Settings/>}/>
+                        <Route path={'/login'} render={() => <Login/>}/>
                     </div>
                 </div>
             </div>

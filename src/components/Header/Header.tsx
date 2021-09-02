@@ -19,7 +19,7 @@ const Header: React.FC<PropsType> = (props) => {
             </a>
             <div className={styles.loginBlock}>
                 {props.isAuth ? props.login
-                    : <NavLink className={styles.loginBlock__btn} to={'/login'}>Log in</NavLink>}
+                    : <NavLink className={styles.loginBlock__btn} to={'/login'}>Login</NavLink>}
             </div>
         </header>
     )
