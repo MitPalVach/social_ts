@@ -16,14 +16,10 @@ const mstp = (state: AppStateType): mstpType => {
 export function withAuthRedirect<T>(Component: ComponentType<T>) {
     const RedirectComponent = (props: mstpType) => {
         let {isAuth, ...restProps} = props
-        if (isAuth) return <Redirect to={'/login'}/>
-
+        if (!isAuth) return <Redirect to={'/login'}/>
         return <Component {...restProps as T}/>
     }
-
-    let ConnectedRedirectComponent = connect(mstp)(RedirectComponent)
-
-    return ConnectedRedirectComponent
+    return connect(mstp)(RedirectComponent)
 }
 
 

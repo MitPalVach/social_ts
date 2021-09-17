@@ -2,6 +2,8 @@ import React from "react";
 import styles from './ProfileInfo.module.css';
 import owlEyes from '../../../images/owl_eyes.jpeg';
 import Preloader from "../../Common/Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
+
 
 type PhotosType = {
     photos: {
@@ -27,6 +29,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
             <div className={styles.avatar}>
                 <img className={styles.avatarImg}
                      src={props.profile.photos.large} alt="avatar"/>
+                <ProfileStatus status={'profStatus'}/>
             </div>
         </div>
     )
