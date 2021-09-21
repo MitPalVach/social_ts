@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {withRouter, RouteComponentProps} from 'react-router-dom';
-import {getUserProfile, ProfileUserType} from "../../redux/profileReducer";
+import {getStatus, getUserProfile, ProfileUserType, setStatus, updateStatus} from "../../redux/profileReducer";
 import {AppStateType} from "../../redux/reduxStore";
 import {compose} from "redux";
 
@@ -23,9 +23,10 @@ const ProfileContainer = (props: PropsType) => {
     useEffect(() => {
         let userId = props.match.params.userId; // string
         if (!userId) {
-            userId = '2';
+            userId = '16540';
         }
         getUserProfile(+userId)
+        setStatus(userId)
     })
     return <Profile profilePage={props.profilePage}/>
 }
@@ -36,7 +37,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     }
 }
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile}),
+    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
     withRouter,
     // withAuthRedirect
 )(ProfileContainer)

@@ -10,7 +10,9 @@ type PropsType = {
 const Profile: React.FC<PropsType> = ({profilePage}) => {
     return (
         <div>
-            <ProfileInfo profile={profilePage.profile}/>
+            <ProfileInfo profile={profilePage.profile}
+                         status={profilePage.status}
+                         updateStatus={profilePage.updateStatus}/>
             <MyPostsContainer profilePage={profilePage}/>
         </div>
     )
