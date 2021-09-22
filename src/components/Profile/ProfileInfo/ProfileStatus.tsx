@@ -3,11 +3,15 @@ import styles from './ProfileInfo.module.css';
 
 type ProfileStatusType = {
     status: string
-    updateStatus: any
+    updateStatus: (status: string) => void
+}
+type StateType = {
+    editMode: boolean
+    status: string
 }
 
 // ==
-class ProfileStatus extends React.Component<ProfileStatusType, any> {
+class ProfileStatus extends React.Component<ProfileStatusType, StateType> {
     state = {
         editMode: false,
         status: this.props.status
@@ -27,6 +31,13 @@ class ProfileStatus extends React.Component<ProfileStatusType, any> {
         this.setState({
             status: e.currentTarget.value
         })
+    }
+    componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<StateType>, snapshot?: any) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
     }
 
     render() {

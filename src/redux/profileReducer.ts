@@ -1,6 +1,8 @@
 import {PostDataType} from "./store";
 import {profileApi, usersApi} from "../api/api";
 import {Dispatch} from "redux";
+import {ThunkDispatch} from "redux-thunk";
+import {AppStateType} from "./reduxStore";
 
 
 const ADD_POST = "ADD-POST"
@@ -34,9 +36,9 @@ export type ProfileUserType = {
     }
     postData: Array<PostDataType>
     newPostText: string
-    status: any
-    updateStatus:() => void
+    status: string
 }
+
 type ContactsType = {
     github: string
     vk: string
@@ -141,19 +143,21 @@ export const setStatus = (status: string) => {
         status
     } as const
 }
-export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
+export const getUserProfile = (userId: number) => (dispatch: ThunkDispatch<AppStateType, unknown, ActionsTypes>) => {
     usersApi.getProfile(userId)
         .then(response => {
             dispatch(setUserProfile(response.data))
+            dispatch(getStatus(userId))
+
         })
 }
-export const getStatus = (userId: number) => (dispatch: Dispatch) => {
+export const getStatus = (userId: number) => (dispatch: ThunkDispatch<AppStateType, unknown, ActionsTypes>) => {
     profileApi.getStatus(userId)
         .then(response => {
             dispatch(setStatus(response.data))
         })
 }
-export const updateStatus = (status: any) => (dispatch: Dispatch) => {
+export const updateStatus = (status: string) => (dispatch: Dispatch) => {
     profileApi.updateStatus(status)
         .then(response => {
             if (response.data.resultCode === 0) {

@@ -13,7 +13,7 @@ type PhotosType = {
 type ProfileInfoType = {
     profile: PhotosType
     status: string
-    updateStatus: () => void
+    updateStatus: (status:string) => void
 }
 const ProfileInfo = (props: ProfileInfoType) => {
     if (!props.profile) {
