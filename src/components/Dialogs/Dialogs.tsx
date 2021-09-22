@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent} from 'react';
+import React from 'react';
 import styles from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
@@ -8,26 +8,15 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
 export type PropsType = {
     dialogsPage: DialogsPageType
-    sendMessage: () => void
-    updateNewMessageBody: (body: string) => void
+    sendMessage: (newMessageBody: string) => void
 }
 const Dialogs: React.FC<PropsType> = (props) => {
     let state = props.dialogsPage
     let dialogsElements = state.dialogs.map(d => <DialogItem key={d.id} dialogs={d}/>);
     let messagesElements = state.messages.map(m => <Message key={m.id} messages={m}/>);
 
-    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.target.value
-        props.updateNewMessageBody(body)
-    }
-    const handleKeyDown = (e: KeyboardEvent<HTMLElement>) => {
-        if (e.ctrlKey && e.key === 'Enter')
-            onSendMessageClick()
-    }
-    let newMessageBody = state.newMessageBody
-
-    let onSendMessageClick = () => {
-        props.sendMessage()
+    let addNewMessage = (values: any) => {
+        props.sendMessage(values.newMessageBody)
     }
 
     return (
@@ -40,7 +29,7 @@ const Dialogs: React.FC<PropsType> = (props) => {
                 <div className={styles.dialogMessages}>
                     {messagesElements}
                 </div>
-                <AddMessageFormRedux/>
+                <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
         </div>
     )
@@ -51,7 +40,7 @@ const AddMessageForm: React.FC<InjectedFormProps> = (props) => {
     return (
         <form className={styles.dialogMessages__inner} onSubmit={props.handleSubmit}>
             <div>
-                <Field component={'textarea'} name={'newMessageBody'} placeholder={'Введите сообщение'}/>
+                <Field component={'textarea'} name='newMessageBody' placeholder={'Введите сообщение'}/>
             </div>
             <div>
                 <button className={styles.dialogMessages__btn}>Написать</button>

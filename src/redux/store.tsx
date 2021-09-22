@@ -1,5 +1,5 @@
-import {addPostAC, updateNewPostTextAC} from "./profileReducer";
-import {sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
+import {addPostAC} from "./profileReducer";
+import {sendMessageAC} from "./dialogsReducer";
 import {AuthType} from "./authReducer";
 
 type PhotosType = {
@@ -68,9 +68,7 @@ export type StoreType = {
 }
 export type ActionsTypes =
     ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof sendMessageAC>
-    | ReturnType<typeof updateNewMessageBodyAC>
 
 // =======
 

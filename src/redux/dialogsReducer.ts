@@ -3,7 +3,6 @@ import sipuha from "../images/friends_avatars/sipuha.jpeg";
 import rybniyFilin from "../images/friends_avatars/rybniy-filin.jpeg";
 
 
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
 export type MessagesType = {
@@ -27,7 +26,6 @@ let initialState = {
         {id: 2, message: 'Hi'},
         {id: 3, message: 'Bye'},
     ] as Array<MessagesType>,
-    newMessageBody: ''
 }
 export type InitialStateType = typeof initialState
 
@@ -35,16 +33,10 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionsT
 
     switch (action.type) {
         case SEND_MESSAGE:
-            let body = state.newMessageBody;
+            let body = action.newMessageBody;
             return {
                 ...state,
-                messages: [{id: 6, message: body}, ...state.messages],
-                newMessageBody: ''
-            };
-        case UPDATE_NEW_MESSAGE_BODY:
-            return {
-                ...state,
-                newMessageBody: action.body
+                messages: [{id: 6, message: body}, ...state.messages]
             };
     }
     return state
@@ -52,17 +44,11 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionsT
 
 export type ActionsTypes =
     ReturnType<typeof sendMessageAC>
-    | ReturnType<typeof updateNewMessageBodyAC>
 
-export const sendMessageAC = () => {
+export const sendMessageAC = (newMessageBody: string) => {
     return {
-        type: SEND_MESSAGE
-    } as const
-}
-export const updateNewMessageBodyAC = (body: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY,
-        body
+        type: SEND_MESSAGE,
+        newMessageBody
     } as const
 }
 
