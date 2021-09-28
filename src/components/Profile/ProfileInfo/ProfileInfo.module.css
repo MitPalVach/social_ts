@@ -38,3 +38,7 @@
     font-weight: 500;
     margin-bottom: 40px;
 }
+
+.statusText {
+    margin: 0 20px 10px;
+}

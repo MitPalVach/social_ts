@@ -3,6 +3,8 @@ import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {ProfileUserType} from "../../../redux/profileReducer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../utils/validators";
+import {Textarea} from "../../Common/FormControls/FormControls";
 
 
 type PropsType = {
@@ -20,7 +22,7 @@ const MyPosts: React.FC<PropsType> = (props) => {
 
     return (
         <div>
-            <h4 className={styles.dir__title}> My posts </h4>
+            {/*<h4 className={styles.dir__title}> My posts </h4>*/}
             <div>
                 <AddMessageFormRedux onSubmit={onAddPost}/>
             </div>
@@ -31,12 +33,16 @@ const MyPosts: React.FC<PropsType> = (props) => {
     )
 }
 
+const maxLength10 = maxLengthCreator(10)
 const AddNewPostForm: React.FC<InjectedFormProps> = (props) => {
-
     return (
         <form className={styles.myPosts__input} onSubmit={props.handleSubmit}>
             <div>
-                <Field component={'textarea'} name='newPostText' placeholder={'Введите сообщение'}/>
+                <Field component={Textarea}
+                       name='newPostText'
+                       placeholder={'Введите сообщение'}
+                       validate={[required, maxLength10]}
+                />
             </div>
             <div>
                 <button className={styles.myPosts__button}>Написать</button>

@@ -42,7 +42,7 @@ class ProfileStatus extends React.Component<ProfileStatusType, StateType> {
 
     render() {
         return (
-            <>
+            <div className={styles.statusText}>
                 {!this.state.editMode ?
                     <div>
                         <span onClick={this.activateEditMode}>{this.props.status || 'no status'}</span>
@@ -54,7 +54,7 @@ class ProfileStatus extends React.Component<ProfileStatusType, StateType> {
                                value={this.state.status}/>
                     </div>
                 }
-            </>
+            </div>
         )
     }
 
