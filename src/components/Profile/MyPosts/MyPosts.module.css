@@ -2,12 +2,9 @@
     margin-top: 40px;
 }
 
-/*.dir__title {*/
-/*    font-size: 20px;*/
-/*    line-height: 20px;*/
-/*    margin-top: 20px;*/
-/*    font-weight: 400;*/
-/*}*/
+.myPosts__input_inner {
+    margin: 0 10px;
+}
 
 .myPosts__input {
     margin-top: 20px;
@@ -31,5 +28,5 @@ button {
     color: white;
     text-transform: uppercase;
     font-weight: 500;
-    margin: 0 10px 30px;
+    margin: 0 0 30px;
 }

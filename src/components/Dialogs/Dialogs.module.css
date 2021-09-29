@@ -22,19 +22,20 @@
 
 }
 
-.dialogMessages__inner {
+.dialogFormWrapper {
+    margin: 20px 0;
+}
 
+.dialogFormWrapper div {
+    margin: 10px 0;
 }
 
 .dialogMessages__input {
+    margin-top: 20px;
     width: 100%;
     height: 100px;
     resize: none;
     padding: 4px 10px;
-}
-
-.dialogMessages__btn {
-
 }
 
 .dialogMessages__btn {
@@ -47,7 +48,7 @@
     color: white;
     text-transform: uppercase;
     font-weight: 500;
-    margin-bottom: 40px;
+    margin: 0 0 30px;
 }
 
 
