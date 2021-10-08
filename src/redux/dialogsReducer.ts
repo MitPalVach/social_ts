@@ -33,10 +33,9 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionsT
 
     switch (action.type) {
         case SEND_MESSAGE:
-            let body = action.newMessageBody;
             return {
                 ...state,
-                messages: [{id: 6, message: body}, ...state.messages]
+                messages: [{id: 6, message: action.newMessageBody}, ...state.messages]
             };
     }
     return state

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {NavLink} from 'react-router-dom';
 import styles from './Header.module.css'
 
@@ -6,6 +6,8 @@ import styles from './Header.module.css'
 type PropsType = {
     isAuth: boolean
     login: string | null
+    getAuthUserData: () => void
+    logout: () => void
 }
 const Header: React.FC<PropsType> = (props) => {
     return (
@@ -18,7 +20,8 @@ const Header: React.FC<PropsType> = (props) => {
                 <h1 className={styles.headerTitle}>owlbook.com</h1>
             </a>
             <div className={styles.loginBlock}>
-                {props.isAuth ? props.login
+                {props.isAuth
+                    ? <div>{props.login} <button onClick={props.logout}>Выйти</button></div>
                     : <NavLink className={styles.loginBlock__btn} to={'/login'}>Login</NavLink>}
             </div>
         </header>

@@ -28,9 +28,7 @@ export const usersApi = {
     },
 }
 
-
 // ====
-
 
 export const profileApi = {
     getProfile(userId: number) {
@@ -44,12 +42,16 @@ export const profileApi = {
     },
 }
 
-
 // ====
-
 
 export const authApi = {
     me() {
         return instance.get<AuthPropsType>(`auth/me`)
-    }
+    },
+    login(email: string, password: string, rememberMe: boolean) {
+        return instance.post<AuthPropsType>(`auth/login`, {email, password, rememberMe})
+    },
+    logout() {
+        return instance.delete<AuthPropsType>(`auth/login`)
+    },
 }

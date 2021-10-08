@@ -16,6 +16,7 @@ const Dialogs: React.FC<PropsType> = (props) => {
     let messagesElements = state.messages.map(m => <Message key={m.id} messages={m}/>);
 
     let addNewMessage = (values: any) => {
+        debugger
         props.sendMessage(values.newMessageBody)
     }
 

@@ -3,24 +3,38 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../Common/FormControls/FormControls";
 import styles from './Login.module.css';
 import {required} from "../../utils/validators";
+import {connect} from "react-redux";
+import {login} from "../../redux/authReducer";
+import {Redirect} from "react-router-dom";
+import {AppStateType} from "../../redux/reduxStore";
 
+
+type LoginPropsType = {
+    isAuth: boolean
+    login: (email: string, password: string, rememberMe: boolean) => void
+}
 
 type FormDataType = {
-    login: string
-    password: string
+    email: string,
+    password: string,
     rememberMe: boolean
 }
+
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={styles.loginFormWrapper}>
             <div>
-                <Field placeholder={'Логин'}
-                       name={'login'}
+                <Field aria-label={'Email'}
+                       placeholder={'Email'}
+                       type={'Email'}
+                       name={'email'}
                        component={Input}
                        validate={required}/>
             </div>
             <div>
-                <Field placeholder={'Пароль'}
+                <Field aria-label={'Password'}
+                       placeholder={'Пароль'}
+                       type={'password'}
                        name={'password'}
                        component={Input}
                        validate={required}/>
@@ -41,10 +55,15 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
 
-const Login = () => {
+const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
-        console.log(formData);
+        props.login(formData.email, formData.password, formData.rememberMe);
     }
+
+    if (props.isAuth) {
+        return <Redirect to={'/profile'}/>
+    }
+
     return (
         <div>
             <h1>Логин</h1>
@@ -52,5 +71,14 @@ const Login = () => {
         </div>
     );
 };
+const mstp = (state: AppStateType)=> ({
+    isAuth: state.auth.isAuth
+})
+export default connect(mstp, {login})(Login);
 
-export default Login;
+
+
+
+
+
+
