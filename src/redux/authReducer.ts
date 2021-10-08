@@ -1,5 +1,7 @@
 import {Dispatch} from "redux";
 import {authApi} from "../api/api";
+import {stopSubmit} from "redux-form";
+import {RootDispatchType} from "./reduxStore";
 
 
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -22,7 +24,7 @@ export type AuthType = {
 export type InitialStateType = AuthType
 
 let initialState = {
-    userId: null,
+    userId: null as number | null,
     email: null,
     login: null,
     isAuth: false,
@@ -54,14 +56,17 @@ export const getAuthUserData = () => (dispatch: Dispatch) => {
             if (response.data.resultCode === 0) {
                 let {id, email, login} = response.data.data;
                 dispatch(setAuthUserData(id, email, login, true))
-            }
-        })
+            }})
 }
-export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
+
+export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: RootDispatchType) => {
     authApi.login(email, password, rememberMe)
         .then(response => {
             if (response.data.resultCode === 0) {
-               dispatch(getAuthUserData())
+                dispatch(getAuthUserData())
+            } else {
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Ошибка ввода'
+                dispatch(stopSubmit('login', {_error: message}))
             }
         })
 }
@@ -69,7 +74,7 @@ export const logout = () => (dispatch: Dispatch) => {
     authApi.logout()
         .then(response => {
             if (response.data.resultCode === 0) {
-               dispatch(setAuthUserData(null, null, null, false))
+                dispatch(setAuthUserData(null, null, null, false))
             }
         })
 }

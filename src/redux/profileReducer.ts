@@ -119,7 +119,7 @@ export const setUserProfile = (profile: ProfileUserType) => {
         profile
     } as const
 }
-export const setStatus = (status: string) => {
+export const setStatus = (status: number) => {
     return {
         type: SET_USER_STATUS,
         status
@@ -142,7 +142,7 @@ export const updateStatus = (status: string) => (dispatch: Dispatch) => {
     profileApi.updateStatus(status)
         .then(response => {
             if (response.data.resultCode === 0) {
-                dispatch(setStatus(status))
+                dispatch(setStatus(+status))
             }
         })
 }

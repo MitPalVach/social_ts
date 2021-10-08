@@ -1,6 +1,7 @@
 .loginFormWrapper {
     margin: 20px 0;
 }
+
 .loginFormWrapper div {
     margin: 10px 0;
 
@@ -17,4 +18,9 @@
     text-transform: uppercase;
     font-weight: 500;
     margin: 0 0 30px;
+}
+
+.formSummaryError {
+    padding: 5px;
+    color: #ff2929;
 }

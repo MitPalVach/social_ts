@@ -24,26 +24,27 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={styles.loginFormWrapper}>
             <div>
-                <Field aria-label={'Email'}
-                       placeholder={'Email'}
-                       type={'Email'}
-                       name={'email'}
+                <Field aria-label='Email'
+                       placeholder='Email'
+                       type='Email'
+                       name='email'
                        component={Input}
                        validate={required}/>
             </div>
             <div>
-                <Field aria-label={'Password'}
-                       placeholder={'Пароль'}
-                       type={'password'}
-                       name={'password'}
+                <Field aria-label='Password'
+                       placeholder='Пароль'
+                       type='password'
+                       name='password'
                        component={Input}
                        validate={required}/>
             </div>
             <div>
-                <Field type={'checkbox'}
-                       name={'rememberMe'}
+                <Field type='checkbox'
+                       name='rememberMe'
                        component={'input'}/> Запомнить
             </div>
+            { props.error && <div className={styles.formSummaryError}>{props.error}</div>}
             <div>
                 <button className={styles.loginBtn}>Login</button>
             </div>

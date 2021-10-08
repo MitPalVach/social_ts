@@ -12,6 +12,8 @@ type PathParamsType = {
 }
 type MapStatePropsType = {
     profilePage: ProfileUserType
+    authorizedUserId: number | null
+    isAuth: boolean
 }
 type MapDispatchPropsType = {
     getUserProfile: (userId: number) => void
@@ -24,11 +26,12 @@ type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
 const ProfileContainer = (props: PropsType) => {
     const dispatch = useDispatch()
     useEffect(() => {
-        let userId = props.match.params.userId; // string
+        let userId = +props.match.params.userId; // string
         if (!userId) {
-            userId = '16540';
+            // @ts-ignore
+            userId = props.authorizedUserId;
         }
-        dispatch(getUserProfile(+userId))
+        dispatch(getUserProfile(userId))
         dispatch(setStatus(userId))
     }, [])
     return <Profile getUserProfile={props.getUserProfile}
@@ -40,6 +43,8 @@ const ProfileContainer = (props: PropsType) => {
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         profilePage: state.profilePage,
+        authorizedUserId: state.auth.userId,
+        isAuth: state.auth.isAuth,
     }
 }
 export default compose<React.ComponentType>(
@@ -49,6 +54,5 @@ export default compose<React.ComponentType>(
         updateStatus
     }),
     withRouter,
-    // withAuthRedirect
 )(ProfileContainer)
 
