@@ -26,10 +26,12 @@ type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
 const ProfileContainer = (props: PropsType) => {
     const dispatch = useDispatch()
     useEffect(() => {
-        let userId = +props.match.params.userId; // string
+        let userId = +props.match.params.userId;
         if (!userId) {
-            // @ts-ignore
-            userId = props.authorizedUserId;
+            userId = props.authorizedUserId || 0;
+            if (!userId) {
+                props.history.push('/login')
+            }
         }
         dispatch(getUserProfile(userId))
         dispatch(setStatus(userId))
