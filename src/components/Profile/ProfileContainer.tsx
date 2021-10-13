@@ -17,7 +17,7 @@ type MapStatePropsType = {
 }
 type MapDispatchPropsType = {
     getUserProfile: (userId: number) => void
-    getStatus: (userId: number) => void
+    // getStatus: () => void
     updateStatus: (status: string) => void
 }
 type OwnPropsType = MapStatePropsType & MapDispatchPropsType
@@ -37,7 +37,7 @@ const ProfileContainer = (props: PropsType) => {
         dispatch(setStatus(userId))
     }, [])
     return <Profile getUserProfile={props.getUserProfile}
-                    getStatus={props.getStatus}
+                    // getStatus={props.getStatus}
                     updateStatus={props.updateStatus}
                     profilePage={props.profilePage}/>
 }
@@ -52,7 +52,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 export default compose<React.ComponentType>(
     connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
         getUserProfile,
-        getStatus,
+        // getStatus,
         updateStatus
     }),
     withRouter,

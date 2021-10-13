@@ -68,7 +68,6 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
-        // @ts-ignore
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state),
     }
