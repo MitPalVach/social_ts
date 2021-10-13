@@ -8,6 +8,8 @@ import {AppStateType} from "./reduxStore";
 const ADD_POST = "ADD-POST"
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_USER_STATUS = 'SET_USER_STATUS'
+const SET_UPDATE_STATUS = 'SET_UPDATE_STATUS'
+
 
 // const initialState = {
 //     profile: {
@@ -98,6 +100,9 @@ const profileReducer = (state: InitStateType = initialState, action: ActionsType
         case SET_USER_PROFILE: {
             return {...state, profile: action.profile}
         }
+        case SET_UPDATE_STATUS: {
+            return {...state, status: action.status}
+        }
     }
     return state
 }
@@ -106,6 +111,7 @@ export type ActionsTypes =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof setUpdateStatus>
 
 export const addPostAC = (newPostText: string) => {
     return {
@@ -122,6 +128,12 @@ export const setUserProfile = (profile: ProfileUserType) => {
 export const setStatus = (status: number) => {
     return {
         type: SET_USER_STATUS,
+        status
+    } as const
+}
+export const setUpdateStatus = (status: string) => {
+    return {
+        type: 'SET_UPDATE_STATUS',
         status
     } as const
 }
@@ -142,7 +154,7 @@ export const updateStatus = (status: string) => (dispatch: Dispatch) => {
     profileApi.updateStatus(status)
         .then(response => {
             if (response.data.resultCode === 0) {
-                dispatch(setStatus(+status))
+                dispatch(setUpdateStatus(status))
             }
         })
 }
