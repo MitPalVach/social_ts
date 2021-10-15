@@ -10,34 +10,6 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_USER_STATUS = 'SET_USER_STATUS'
 const SET_UPDATE_STATUS = 'SET_UPDATE_STATUS'
 
-
-// const initialState = {
-//     profile: {
-//         userId: 2,
-//         lookingForAJob: false,
-//         lookingForAJobDescription: '',
-//         fullName: '',
-//         contacts: {
-//             github: '',
-//             vk: "",
-//             facebook: "",
-//             instagram: "",
-//             twitter: "",
-//             website: "",
-//             youtube: "",
-//             mainLink: "",
-//         },
-//         photos: {
-//             small: '',
-//             large: '',
-//         }
-//     },
-//     postData: [{message: 'Hi, how are you?', id: 1, likeCount: 12},
-//         {message: 'What do you think about JS?', id: 2, likeCount: 22},
-//         {message: 'I learn not only JS but and TS!', id: 3, likeCount: 42},
-//         {message: 'Oh, it\'s cool', id: 4, likeCount: 23}],
-//     status: '',
-// }
 let initialState = {
     postData: [
         {message: 'Hi, how are you?', id: 1, likeCount: 12},
