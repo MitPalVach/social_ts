@@ -11,7 +11,6 @@ type PropsType = {
 }
 
 const MyPosts = React.memo((props: PropsType) => {
-    console.log('sd');
     let state = props.profilePage
     let postElements = state.postData.map(p => <Post key={p.id} post={p}/>);
 
