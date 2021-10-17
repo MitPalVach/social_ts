@@ -15,20 +15,16 @@ type UsersType = {
     unfollow: (userId: number) => void
     isFetching: boolean
     followingInProgress: Array<number>
+    portionSize: number
 }
 const Users = (props: UsersType): JSX.Element => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = []
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
-
     return (
         <div className={styles.usersInner}>
-            <Paginator totalUsersCount={props.totalUsersCount}
+            <Paginator totalItemsCount={props.totalUsersCount}
                        pageSize={props.pageSize}
                        currentPage={props.currentPage}
                        onPageChanged={props.onPageChanged}
+                       portionSize={props.portionSize}
             />
 
             {props.usersPage.map(u => <User key={u.id}

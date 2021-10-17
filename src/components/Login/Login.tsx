@@ -44,7 +44,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                        name='rememberMe'
                        component={'input'}/> Запомнить
             </div>
-            { props.error && <div className={styles.formSummaryError}>{props.error}</div>}
+            {props.error && <div className={styles.formSummaryError}>{props.error}</div>}
             <div>
                 <button className={styles.loginBtn}>Login</button>
             </div>
@@ -71,7 +71,7 @@ const Login = (props: LoginPropsType) => {
         </div>
     );
 };
-const mstp = (state: AppStateType)=> ({
+const mstp = (state: AppStateType) => ({
     isAuth: state.auth.isAuth
 })
 export default connect(mstp, {login})(Login);

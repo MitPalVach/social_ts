@@ -6,14 +6,13 @@ const SUCCESS_INITIALIZED = 'SUCCESS_INITIALIZED';
 export type AppInitialStateType = {
     initialized: boolean
 }
-export type InitialStateType = AppInitialStateType
 export type ActionsTypes = ReturnType<typeof successInitialized>
 
 let initialState = {
     initialized: false,
 }
 
-const appReducer = (state: InitialStateType = initialState, action: ActionsTypes) => {
+const appReducer = (state: AppInitialStateType = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case SUCCESS_INITIALIZED:
             return {
@@ -32,6 +31,5 @@ export const initializeApp = () => (dispatch: RootDispatchType) => {
         })
 }
 export const successInitialized = () => ({type: SUCCESS_INITIALIZED,} as const)
-
 
 export default appReducer

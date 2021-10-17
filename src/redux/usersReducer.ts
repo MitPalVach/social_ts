@@ -34,16 +34,18 @@ export type InitialStateType = {
     pageNumber: number
     isFetching: boolean
     followingInProgress: Array<number>
+    portionSize: number
 }
 
 let initialState: InitialStateType = {
     users: [],
-    pageSize: 5,
+    pageSize: 20,
     totalUsersCount: 0,
     currentPage: 1,
     pageNumber: 1,
     isFetching: true,
     followingInProgress: [],
+    portionSize: 10,
 }
 const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {

@@ -29,13 +29,26 @@
     margin-top: 50px;
 }
 
-.loginBlock__btn {
+.loginLogoutBtn {
     text-decoration: none;
     color: #000000;
     cursor: pointer;
     font-weight: 500;
+    background: transparent;
+    border: none;
+    font-size: 14px;
 }
 
-.loginBlock__btn:hover {
+.loginLogoutBtn:hover {
     text-decoration: underline;
 }
+
+
+
+
+
+
+
+
+
+

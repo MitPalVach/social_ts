@@ -1,6 +1,6 @@
 import React, {ComponentType} from 'react';
 import styles from './App.module.css';
-import {Route, withRouter} from 'react-router-dom';
+import {BrowserRouter, Route, withRouter} from 'react-router-dom';
 import Navbar from "../Navbar/Navbar";
 import UsersContainer from "../Users/UsersContainer";
 import News from "../News/News";
@@ -12,8 +12,8 @@ import DialogsContainer from "../Dialogs/DialogsContainer";
 import ProfileContainer from "../Profile/ProfileContainer";
 import HeaderContainer from "../Header/HeaderContainer";
 import Login from "../Login/Login";
-import {connect} from "react-redux";
-import {AppStateType} from "../../redux/reduxStore";
+import {connect, Provider} from "react-redux";
+import {AppStateType, store} from "../../redux/reduxStore";
 import {compose} from "redux";
 import {initializeApp} from "../../redux/appReducer";
 import Preloader from "../Common/Preloader/Preloader";
@@ -68,6 +68,24 @@ const mstp = (state: AppStateType) => ({
     initialized: state.app.initialized
 })
 
-export default compose<ComponentType>(
+let AppContainer = compose<ComponentType>(
     withRouter,
     connect(mstp, {initializeApp}))(App)
+
+let SocialApp = (props: StateType) => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+        </BrowserRouter>
+    )
+}
+
+export default SocialApp
+
+
+
+
+
+
