@@ -24,7 +24,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
         <div>
             <div>
                 <img className={styles.profileImg}
-                     src={'http://green-forest36.ru/wp-content/uploads/2020/04/2-1.jpg'}
+                     src={props.profile.photos.large || 'http://green-forest36.ru/wp-content/uploads/2020/04/2-1.jpg'}
                     // src={owlEyes}
                      alt='owl'/>
             </div>

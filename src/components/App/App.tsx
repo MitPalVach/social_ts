@@ -1,6 +1,6 @@
 import React, {ComponentType, Suspense} from 'react';
 import styles from './App.module.css';
-import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom';
+import {BrowserRouter, HashRouter, Route, Switch, withRouter} from 'react-router-dom';
 import Navbar from "../Navbar/Navbar";
 import News from "../News/News";
 import Music from "../Music/Music";
@@ -51,9 +51,10 @@ class App extends React.Component<PropsType, StateType> {
                         <div className={styles.content__inner}>
                             <Suspense fallback={<Preloader/>}>
                                 <Switch>
-                                    <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
-                                    <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
-                                    <Route path={'/users'} render={() => <UsersContainer/>}/>
+                                    {/*<Route path={'/dialogs'} render={() =>DialogsContainer}/>*/}
+                                    <Route path={'/dialogs'} component={DialogsContainer}/>
+                                    <Route path={'/profile/:userId?'} component={ProfileContainer}/>
+                                    <Route path={'/users'} component={UsersContainer}/>
                                     <Route path={'/news'} render={() => <News/>}/>
                                     <Route path={'/music'} render={() => <Music/>}/>
                                     <Route path={'/photo'} render={() => <Photo/>}/>
@@ -80,11 +81,11 @@ let AppContainer = compose<ComponentType>(
 
 let SocialApp = () => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <AppContainer/>
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 

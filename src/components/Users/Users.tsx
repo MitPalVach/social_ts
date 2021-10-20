@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import styles from "./Users.module.css";
 import {UserType} from "../../redux/usersReducer";
 import Paginator from "../Common/Paginator/Paginator";
@@ -17,7 +17,13 @@ type UsersType = {
     followingInProgress: Array<number>
     portionSize: number
 }
-const Users = (props: UsersType): JSX.Element => {
+
+// component return jsx or null
+// null | string => Nullable<string>
+
+type Nullable<T> = T | null
+
+const Users = (props: UsersType): Nullable<ReactElement> => {
     return (
         <div className={styles.usersInner}>
             <Paginator totalItemsCount={props.totalUsersCount}

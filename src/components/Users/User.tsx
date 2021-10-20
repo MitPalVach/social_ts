@@ -3,7 +3,7 @@ import styles from "./Users.module.css";
 // import userPhoto from "./avatar_to_all.png";
 import {UserType} from "../../redux/usersReducer";
 import {NavLink} from 'react-router-dom';
-const userPhoto = 'https://images.pexels.com/photos/1564839/pexels-photo-1564839.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+export const userPhoto = 'https://images.pexels.com/photos/1564839/pexels-photo-1564839.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
 
 
 type UserPropsType = {
