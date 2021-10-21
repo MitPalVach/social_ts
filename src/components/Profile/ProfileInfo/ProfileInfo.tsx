@@ -2,6 +2,7 @@ import React from "react";
 import styles from './ProfileInfo.module.css';
 import Preloader from "../../Common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
+import {userPhoto} from "../../Users/User";
 // import owlEyes from '../../../images/owl_eyes.jpeg';
 
 
@@ -24,14 +25,14 @@ const ProfileInfo = (props: ProfileInfoType) => {
         <div>
             <div>
                 <img className={styles.profileImg}
-                     src={props.profile.photos.large || 'http://green-forest36.ru/wp-content/uploads/2020/04/2-1.jpg'}
+                     src={props.profile.photos.large || userPhoto}
                     // src={owlEyes}
                      alt='owl'/>
             </div>
             <div className={styles.avatar}>
-                {props.profile.photos.large &&
-                <img className={styles.avatarImg}
-                     src={props.profile.photos.large} alt="avatar"/>}
+                {/*{props.profile.photos.large &&*/}
+                {/*<img className={styles.avatarImg}*/}
+                {/*     src={props.profile.photos.large} alt="avatar"/>}*/}
                 <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
