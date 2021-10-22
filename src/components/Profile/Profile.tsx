@@ -10,14 +10,16 @@ type PropsType = {
     // getStatus: () => void
     updateStatus: (status: string) => void
     isOwner: boolean
+    callbackPhoto: (file: any) => void
 }
 const Profile: React.FC<PropsType> = ({profilePage, updateStatus, ...props}) => {
     return (
         <div>
-            <ProfileInfo profile={profilePage.profile}
+            <ProfileInfo profile={profilePage}
                          status={profilePage.status}
                          isOwner={props.isOwner}
                          updateStatus={updateStatus}
+                         callbackPhoto={props.callbackPhoto}
             />
             <MyPostsContainer profilePage={profilePage}/>
         </div>

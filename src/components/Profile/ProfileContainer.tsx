@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Profile from "./Profile";
 import {connect, useDispatch} from "react-redux";
 import {withRouter, RouteComponentProps} from 'react-router-dom';
-import {getUserProfile, ProfileUserType, setStatus, updateStatus} from "../../redux/profileReducer";
+import {getUserProfile, ProfileUserType, savePhoto, setStatus, updateStatus} from "../../redux/profileReducer";
 import {AppStateType} from "../../redux/reduxStore";
 import {compose} from "redux";
 
@@ -19,13 +19,13 @@ type MapDispatchPropsType = {
     getUserProfile: (userId: number) => void
     // getStatus: () => void
     updateStatus: (status: string) => void
+    savePhoto: (file: any) => void
 }
 type OwnPropsType = MapStatePropsType & MapDispatchPropsType
 type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
 
 const ProfileContainer = (props: PropsType) => {
     const dispatch = useDispatch()
-
     useEffect(() => {
         let userId = +props.match.params.userId;
         if (!userId) {
@@ -37,12 +37,16 @@ const ProfileContainer = (props: PropsType) => {
         dispatch(getUserProfile(userId))
         dispatch(setStatus(userId))
     }, [])
+    const callbackPhoto = (file: any) => {
+        dispatch(savePhoto(file))
+    }
     return (
         <Profile getUserProfile={props.getUserProfile}
             // getStatus={props.getStatus}
                  isOwner={!props.match.params.userId} //
                  updateStatus={props.updateStatus}
                  profilePage={props.profilePage}
+                 callbackPhoto={callbackPhoto}
         />
     )
 }
@@ -57,6 +61,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 export default compose<React.ComponentType>(
     connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
         getUserProfile,
+        savePhoto,
         // getStatus,
         updateStatus
     }),
