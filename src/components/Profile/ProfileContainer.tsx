@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Profile from "./Profile";
 import {connect, useDispatch} from "react-redux";
 import {withRouter, RouteComponentProps} from 'react-router-dom';
-import {getStatus, getUserProfile, ProfileUserType, setStatus, updateStatus} from "../../redux/profileReducer";
+import {getUserProfile, ProfileUserType, setStatus, updateStatus} from "../../redux/profileReducer";
 import {AppStateType} from "../../redux/reduxStore";
 import {compose} from "redux";
 
@@ -37,10 +37,14 @@ const ProfileContainer = (props: PropsType) => {
         dispatch(getUserProfile(userId))
         dispatch(setStatus(userId))
     }, [])
-    return <Profile getUserProfile={props.getUserProfile}
-                    // getStatus={props.getStatus}
-                    updateStatus={props.updateStatus}
-                    profilePage={props.profilePage}/>
+    return (
+        <Profile getUserProfile={props.getUserProfile}
+            // getStatus={props.getStatus}
+                 isOwner={!props.match.params.userId} //
+                 updateStatus={props.updateStatus}
+                 profilePage={props.profilePage}
+        />
+    )
 }
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
