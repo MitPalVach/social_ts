@@ -45,8 +45,7 @@ export const LoginN = () => {
         },
         onSubmit: values => {
             // alert(JSON.stringify(values));
-            // @ts-ignore
-            dispatch(login(values))
+            dispatch(login(values.email, values.password, values.rememberMe))
             formik.resetForm()
         },
     })

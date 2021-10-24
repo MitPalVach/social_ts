@@ -4,7 +4,7 @@ import styles from "./ProfileInfo.module.css";
 
 type ContactType = {
     contactTitle: string
-    contactValue: string
+    contactValue: string | null
 }
 const Contact: React.FC<ContactType> = ({contactTitle, contactValue}) => {
     return (

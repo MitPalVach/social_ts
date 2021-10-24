@@ -1,19 +1,7 @@
 import React, {FC} from 'react';
-import {ContactsType, ProfileUserType} from "../../../redux/profileReducer";
+import {ProfileUserType} from "../../../redux/profileReducer";
 import styles from "./ProfileInfo.module.css";
 import Contact from "./Contact";
-
-
-let ContactsInitialState: ContactsType = {
-    github: '',
-    vk: '',
-    facebook: '',
-    instagram: '',
-    twitter: '',
-    website: '',
-    youtube: '',
-    mainLink: '',
-}
 
 
 type PropsType = {
@@ -40,9 +28,8 @@ const ProfileData: FC<PropsType> = ({profile, isOwner, goToEditMode}) => {
                 <b>Мои профессиональные навыки: </b> {profile.profile.lookingForAJobDescription}
             </div>
             <div className={styles.profileInfo__contacts}>
-                {Object.keys(profile.profile.contacts).map(key => {
-                    // @ts-ignore
-                    return <Contact key={key} contactTitle={key} contactValue={profile.profile.contacts[key]}/>
+                {Object.entries(profile.profile.contacts).map(([key, value]) => {
+                    return <Contact key={key} contactTitle={key} contactValue={value}/>
                 })}
             </div>
         </div>

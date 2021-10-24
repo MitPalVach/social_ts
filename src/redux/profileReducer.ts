@@ -46,14 +46,7 @@ export type ProfileUserType = {
     status: string
 }
 export type ContactsType = {
-    github: string
-    vk: string
-    facebook: string
-    instagram: string
-    twitter: string
-    website: string
-    youtube: string
-    mainLink: string
+    [key: string]: string | null
 }
 
 type InitStateType = typeof initialState
