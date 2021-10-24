@@ -8,12 +8,13 @@ import Photo from "../Photo/Photo";
 import Video from "../Video/Video";
 import Settings from "../Settings/Settings";
 import HeaderContainer from "../Header/HeaderContainer";
-import Login from "../Login/Login";
+// import Login from "../Login/Login";
 import {connect, Provider} from "react-redux";
 import {AppStateType, store} from "../../redux/reduxStore";
 import {compose} from "redux";
 import {initializeApp} from "../../redux/appReducer";
 import Preloader from "../Common/Preloader/Preloader";
+import {LoginN} from "../Login/LoginN";
 // import ProfileContainer from "../Profile/ProfileContainer";
 // import DialogsContainer from "../Dialogs/DialogsContainer";
 // import UsersContainer from "../Users/UsersContainer";
@@ -77,7 +78,7 @@ class App extends React.Component<PropsType, StateType> {
                             <Route path='/photo' render={() => <Photo/>}/>
                             <Route path='/video' render={() => <Video/>}/>
                             <Route path='/settings' render={() => <Settings/>}/>
-                            <Route path='/login' render={() => <Login/>}/>
+                            <Route path='/login' render={() => <LoginN/>}/>
                             {/*</Switch>*/}
                         </div>
                     </div>

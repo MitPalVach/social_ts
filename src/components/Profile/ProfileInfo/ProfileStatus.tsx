@@ -12,7 +12,7 @@ const ProfileStatus = (props: ProfileStatusType) => {
     const [status, setStatus] = useState<string>(props.status)
 
     useEffect(() => {
-      setStatus(props.status)
+        setStatus(props.status)
     }, [props.status])
 
     const activeMode = () => {
@@ -28,10 +28,10 @@ const ProfileStatus = (props: ProfileStatusType) => {
 
     return (
         <div className={styles.statusText}>
-            {!editMode &&
-            <span onDoubleClick={activeMode}>
+            {!editMode && <div>
+                <b>Статус: </b> <span onDoubleClick={activeMode}>
                     {status || 'no status'}
-                </span>}
+                </span></div>}
             {editMode &&
             <input onChange={onStatusChange}
                    onBlur={deactivateEditMode}

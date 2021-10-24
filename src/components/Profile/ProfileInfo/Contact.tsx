@@ -8,8 +8,8 @@ type ContactType = {
 }
 const Contact: React.FC<ContactType> = ({contactTitle, contactValue}) => {
     return (
-        <div className={styles.profileInfo__item}>
-            <b>{contactTitle}</b> {contactValue}
+        <div className={styles.profileInfo__contact}>
+            <b>{contactTitle}: </b> {contactValue}
         </div>
     );
 };

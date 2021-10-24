@@ -39,12 +39,13 @@ export type ProfileUserType = {
         fullName: string
         contacts: ContactsType
         photos: PhotosType
+        aboutMe:string
     }
     postData: Array<PostDataType>
     newPostText: string
     status: string
 }
-type ContactsType = {
+export type ContactsType = {
     github: string
     vk: string
     facebook: string

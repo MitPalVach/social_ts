@@ -11,6 +11,8 @@ type PropsType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     callbackPhoto: (file: any) => void
+    isAuth: boolean
+
 }
 const Profile: React.FC<PropsType> = ({profilePage, updateStatus, ...props}) => {
     return (
@@ -20,6 +22,7 @@ const Profile: React.FC<PropsType> = ({profilePage, updateStatus, ...props}) => 
                          isOwner={props.isOwner}
                          updateStatus={updateStatus}
                          callbackPhoto={props.callbackPhoto}
+                         isAuth={props.isAuth}
             />
             <MyPostsContainer profilePage={profilePage}/>
         </div>

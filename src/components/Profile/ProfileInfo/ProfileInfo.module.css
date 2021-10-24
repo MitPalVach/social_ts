@@ -14,9 +14,11 @@
     color: transparent;
     max-width: 134px;
 }
+
 .profileImg__inputPhoto::-webkit-file-upload-button {
     visibility: hidden;
 }
+
 .profileImg__inputPhoto::before {
     content: 'Загрузить аватар';
     color: black;
@@ -33,18 +35,34 @@
     font-weight: 700;
     font-size: 10pt;
 }
+
 .profileImg__inputPhoto:hover::before {
     border-color: black;
 }
 
-.profileInfo__items {
-
+.profileData__changeBtn {
+    color: black;
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 2px 5px;
+    outline: none;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
 }
 
-.profileInfo__item {
-display: block;
+.profileInfo__contacts {
+    margin-top: 10px;
 }
-
+.profileInfo__contacts {
+    margin-left: 10px;
+}
 .avatar {
 
 }
@@ -64,19 +82,6 @@ display: block;
     height: 100px;
     resize: none;
     padding: 4px 10px;
-}
-
-.myPosts__button {
-    border: none;
-    font-size: 12px;
-    padding: 6px 12px;
-    border-radius: 4px;
-    background: #535353;
-    cursor: pointer;
-    color: white;
-    text-transform: uppercase;
-    font-weight: 500;
-    margin-bottom: 40px;
 }
 
 .statusText {

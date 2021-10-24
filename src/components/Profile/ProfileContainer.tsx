@@ -47,6 +47,7 @@ const ProfileContainer = (props: PropsType) => {
                  updateStatus={props.updateStatus}
                  profilePage={props.profilePage}
                  callbackPhoto={callbackPhoto}
+                 isAuth={props.isAuth}
         />
     )
 }
