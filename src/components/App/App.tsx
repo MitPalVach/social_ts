@@ -8,13 +8,12 @@ import Photo from "../Photo/Photo";
 import Video from "../Video/Video";
 import Settings from "../Settings/Settings";
 import HeaderContainer from "../Header/HeaderContainer";
-// import Login from "../Login/Login";
 import {connect, Provider} from "react-redux";
 import {AppStateType, store} from "../../redux/reduxStore";
 import {compose} from "redux";
 import {initializeApp} from "../../redux/appReducer";
 import Preloader from "../Common/Preloader/Preloader";
-import {LoginN} from "../Login/LoginN";
+import {Login} from "../Login/Login";
 // import ProfileContainer from "../Profile/ProfileContainer";
 // import DialogsContainer from "../Dialogs/DialogsContainer";
 // import UsersContainer from "../Users/UsersContainer";
@@ -50,22 +49,6 @@ class App extends React.Component<PropsType, StateType> {
                     <Navbar/>
                     <div className={styles.content__wrapper}>
                         <div className={styles.content__inner}>
-                            {/*<Switch>*/}
-                            {/*    <Route exact path={'/profile/:userId?'} component={() => {*/}
-                            {/*        return <React.Suspense fallback={<Preloader/>}>*/}
-                            {/*            <ProfileContainer/>*/}
-                            {/*        </React.Suspense>*/}
-                            {/*    }}/>*/}
-                            {/*    <Route path={'/dialogs'} component={() => {*/}
-                            {/*        return <React.Suspense fallback={<Preloader/>}>*/}
-                            {/*            <DialogsContainer/>*/}
-                            {/*        </React.Suspense>*/}
-                            {/*    }}/>*/}
-                            {/*    <Route path={'/users'} component={() => {*/}
-                            {/*        return <React.Suspense fallback={<Preloader/>}>*/}
-                            {/*            <UsersContainer/>*/}
-                            {/*        </React.Suspense>*/}
-                            {/*    }}/>*/}
                             <Suspense fallback={<Preloader/>}>
                                 <Switch>
                                     <Route path='/profile/:userId?' component={ProfileContainer}/>
@@ -78,8 +61,7 @@ class App extends React.Component<PropsType, StateType> {
                             <Route path='/photo' render={() => <Photo/>}/>
                             <Route path='/video' render={() => <Video/>}/>
                             <Route path='/settings' render={() => <Settings/>}/>
-                            <Route path='/login' render={() => <LoginN/>}/>
-                            {/*</Switch>*/}
+                            <Route path='/login' render={() => <Login/>}/>
                         </div>
                     </div>
                 </div>

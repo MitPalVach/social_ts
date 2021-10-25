@@ -11,8 +11,14 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_USER_STATUS = 'SET_USER_STATUS'
 const SET_UPDATE_STATUS = 'SET_UPDATE_STATUS'
 const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS'
+const SAVE_PROFILE = 'SAVE_PROFILE'
 
-
+export type ProfileInfoResponseType = {
+    lookingForAJob?: boolean,
+    lookingForAJobDescription?: string
+    fullName?: string
+    aboutMe?: string
+}
 let initialState = {
     postData: [
         {message: 'Hi, how are you?', id: 1, likeCount: 12},
@@ -25,7 +31,6 @@ let initialState = {
         contacts: {}
     },
     status: '',
-
 }
 export type PhotosType = {
     small: string
@@ -39,7 +44,7 @@ export type ProfileUserType = {
         fullName: string
         contacts: ContactsType
         photos: PhotosType
-        aboutMe:string
+        aboutMe: string
     }
     postData: Array<PostDataType>
     newPostText: string
@@ -85,6 +90,9 @@ const profileReducer = (state: InitStateType = initialState, action: ActionsType
         case SAVE_PHOTO_SUCCESS: {
             return {...state, profile: {...state.profile, photos: action.photos}}
         }
+        case SAVE_PROFILE: {
+            return {...state, profile: {...state.profile, profile: action.profile}}
+        }
     }
     return state
 }
@@ -95,7 +103,7 @@ export type ActionsTypes =
     | ReturnType<typeof setStatus>
     | ReturnType<typeof setUpdateStatus>
     | ReturnType<typeof deletePost>
-    | savePhotoSuccessAT
+    | savePhotoSuccessAT | saveProfileAT
 
 export const addPostAC = (newPostText: string) => {
     return {
@@ -123,17 +131,25 @@ export const setStatus = (status: number) => {
 }
 export const setUpdateStatus = (status: string) => {
     return {
-        type: 'SET_UPDATE_STATUS',
+        type: SET_UPDATE_STATUS,
         status
     } as const
 }
 export const savePhotoSuccess = (photos: PhotosType) => {
     return {
-        type: 'SAVE_PHOTO_SUCCESS',
+        type: SAVE_PHOTO_SUCCESS,
         photos
     } as const
 }
+export const saveProfileSuccess = (profile: ProfileInfoResponseType) => {
+    return {
+        type: SAVE_PROFILE,
+        profile
+    } as const
+}
 export type savePhotoSuccessAT = ReturnType<typeof savePhotoSuccess>
+export type saveProfileAT = ReturnType<typeof saveProfileSuccess>
+
 
 // thunk
 export const getUserProfile = (userId: number) => async (dispatch: ThunkDispatch<AppStateType, unknown, ActionsTypes>) => {
@@ -155,6 +171,17 @@ export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
     let response = await profileApi.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
+    }
+}
+export const saveProfile = (profile: ProfileInfoResponseType, userId: number) => async (dispatch: Dispatch) => {
+    let response = await profileApi.saveProfile(profile)
+
+    console.log("response ", response)
+
+    if (response.data.resultCode === 0) {
+        // @ts-ignore
+        dispatch(getUserProfile(userId))
+        dispatch(saveProfileSuccess(response.data.data.profile))
     }
 }
 

@@ -6,23 +6,23 @@ import Contact from "./Contact";
 
 type PropsType = {
     profile: ProfileUserType
-    isOwner: boolean
     goToEditMode: () => void
+    isAuth: boolean
 }
-const ProfileData: FC<PropsType> = ({profile, isOwner, goToEditMode}) => {
+const ProfileData: FC<PropsType> = ({profile, isAuth, goToEditMode}) => {
     return (
         <div className={styles.profileInfo__items}>
-            {isOwner && <div>
+            {isAuth && <div>
                 <button className={styles.profileData__changeBtn} onClick={goToEditMode}>редактировать данные</button>
             </div>}
             <div className={styles.profileInfo__item}>
-                <b>Имя: </b> {profile.profile.fullName || ''}
+                <b>Имя: </b> {profile.profile.fullName}
             </div>
             <div className={styles.profileInfo__item}>
                 <b>Обо мне: </b> {profile.profile.aboutMe}
             </div>
             <div className={styles.profileInfo__item}>
-                <b>Поиск работы: </b> {profile.profile.lookingForAJob ? "да" : "нет"}
+                <b>Поиск работы: </b> {profile.profile.lookingForAJob}
             </div>
             <div className={styles.profileInfo__item}>
                 <b>Мои профессиональные навыки: </b> {profile.profile.lookingForAJobDescription}

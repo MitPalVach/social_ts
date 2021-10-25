@@ -3,7 +3,7 @@ import styles from './ProfileInfo.module.css';
 import Preloader from "../../Common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
 import {userPhoto} from "../../Users/User";
-import {ProfileUserType} from "../../../redux/profileReducer";
+import {ProfileUserType, ProfileInfoResponseType} from "../../../redux/profileReducer";
 import ProfileDataForm from "./ProfileDataForm";
 import ProfileData from "./ProfileData";
 
@@ -13,15 +13,22 @@ type ProfileInfoType = {
     status: string
     updateStatus: (status: string) => void
     isOwner: boolean
-    callbackPhoto: (file: any) => void
+    callbackPhoto: (file: File) => void
     isAuth: boolean
+    saveProfile: (profile: ProfileInfoResponseType) => void
 }
 const ProfileInfo = (props: ProfileInfoType) => {
     const [editMode, setEditMode] = useState(false)
 
+
     const goToEditMode = () => {
         setEditMode(true)
     }
+    const goToViewMode = () => {
+        console.log("pew")
+        setEditMode(false)
+    }
+    console.log(editMode)
     if (!props.profile) {
         return <Preloader/>
     }
@@ -30,6 +37,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
             props.callbackPhoto(e.target.files[0])
         }
     }
+
     return (
         props.profile.profile.contacts &&
         <div>
@@ -38,7 +46,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
                      src={props.profile.profile.photos ? props.profile.profile.photos.large : userPhoto}
                      alt='avatar'/>
                 <div className={styles.profileImg__inputPhoto_wrapper}>
-                    {props.isOwner &&
+                    {props.isAuth &&
                     <input className={styles.profileImg__inputPhoto}
                            type={'file'}
                            onChange={onMainPhotoSelected}
@@ -46,10 +54,13 @@ const ProfileInfo = (props: ProfileInfoType) => {
                 </div>
             </div>
             {editMode
-                ? <ProfileDataForm profile={props.profile}/>
+                ? <ProfileDataForm profile={props.profile}
+                                   saveProfile={props.saveProfile}
+                                   goToViewMode={goToViewMode}
+                />
                 : <ProfileData goToEditMode={goToEditMode}
                                profile={props.profile}
-                               isOwner={props.isOwner}/>}
+                               isAuth={props.isAuth}/>}
             <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
         </div>
     )

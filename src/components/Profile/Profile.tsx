@@ -1,7 +1,7 @@
 import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {ProfileUserType} from "../../redux/profileReducer";
+import {ProfileInfoResponseType, ProfileUserType} from "../../redux/profileReducer";
 
 
 type PropsType = {
@@ -12,7 +12,7 @@ type PropsType = {
     isOwner: boolean
     callbackPhoto: (file: any) => void
     isAuth: boolean
-
+    saveProfile: (profile: ProfileInfoResponseType) => void
 }
 const Profile: React.FC<PropsType> = ({profilePage, updateStatus, ...props}) => {
     return (
@@ -23,6 +23,7 @@ const Profile: React.FC<PropsType> = ({profilePage, updateStatus, ...props}) => 
                          updateStatus={updateStatus}
                          callbackPhoto={props.callbackPhoto}
                          isAuth={props.isAuth}
+                         saveProfile={props.saveProfile}
             />
             <MyPostsContainer profilePage={profilePage}/>
         </div>

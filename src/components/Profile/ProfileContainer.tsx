@@ -2,7 +2,14 @@ import React, {useEffect} from 'react';
 import Profile from "./Profile";
 import {connect, useDispatch} from "react-redux";
 import {withRouter, RouteComponentProps} from 'react-router-dom';
-import {getUserProfile, ProfileUserType, savePhoto, setStatus, updateStatus} from "../../redux/profileReducer";
+import {
+    getUserProfile,
+    ProfileUserType,
+    savePhoto,
+    saveProfile,
+    setStatus, ProfileInfoResponseType,
+    updateStatus
+} from "../../redux/profileReducer";
 import {AppStateType} from "../../redux/reduxStore";
 import {compose} from "redux";
 
@@ -19,35 +26,42 @@ type MapDispatchPropsType = {
     getUserProfile: (userId: number) => void
     // getStatus: () => void
     updateStatus: (status: string) => void
-    savePhoto: (file: any) => void
+    savePhoto: (file: File) => void
+    saveProfile: (profile: ProfileInfoResponseType, userId: number) => void
 }
 type OwnPropsType = MapStatePropsType & MapDispatchPropsType
 type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
 
 const ProfileContainer = (props: PropsType) => {
     const dispatch = useDispatch()
+    let userId = +props.match.params.userId;
+    if (!userId) {
+        userId = props.authorizedUserId || 0;
+        // if (!userId) {                               // раскомент
+        //     props.history.push('/login')
+        // }
+    }
     useEffect(() => {
-        let userId = +props.match.params.userId;
-        if (!userId) {
-            userId = props.authorizedUserId || 0;
-            // if (!userId) {                               // раскомент
-            //     props.history.push('/login')
-            // }
-        }
         dispatch(getUserProfile(userId))
         dispatch(setStatus(userId))
     }, [])
     const callbackPhoto = (file: any) => {
         dispatch(savePhoto(file))
     }
+
+    const saveProfile = (profile: ProfileInfoResponseType) => {
+        props.saveProfile(profile, userId)
+    }
+
     return (
         <Profile getUserProfile={props.getUserProfile}
             // getStatus={props.getStatus}
-                 isOwner={!props.match.params.userId} //
+                 isOwner={!props.match.params.userId}
                  updateStatus={props.updateStatus}
                  profilePage={props.profilePage}
                  callbackPhoto={callbackPhoto}
                  isAuth={props.isAuth}
+                 saveProfile={saveProfile}
         />
     )
 }
@@ -63,6 +77,7 @@ export default compose<React.ComponentType>(
     connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, {
         getUserProfile,
         savePhoto,
+        saveProfile,
         // getStatus,
         updateStatus
     }),
