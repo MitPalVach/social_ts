@@ -25,10 +25,8 @@ const ProfileInfo = (props: ProfileInfoType) => {
         setEditMode(true)
     }
     const goToViewMode = () => {
-        console.log("pew")
         setEditMode(false)
     }
-    console.log(editMode)
     if (!props.profile) {
         return <Preloader/>
     }

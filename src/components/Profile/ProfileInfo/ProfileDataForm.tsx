@@ -1,12 +1,10 @@
 import React, {FC} from 'react';
 import styles from "./ProfileInfo.module.css";
 import {ProfileInfoResponseType, ProfileUserType} from "../../../redux/profileReducer";
-import Contact from "./Contact";
 import FormGroup from '@mui/material/FormGroup';
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import {useFormik} from "formik";
-import {useDispatch} from "react-redux";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
 
@@ -22,14 +20,14 @@ const ProfileDataForm: FC<PropsType> = ({profile, saveProfile, goToViewMode}) =>
             lookingForAJobDescription: profile.profile.lookingForAJobDescription,
             fullName: profile.profile.fullName,
             contacts: {
-                github: "",
-                vk: "",
-                facebook: "",
-                Instagram: "",
-                twitter: "",
-                website: "",
-                youtube: "",
-                mainLink: ""
+                github: profile.profile.contacts.github,
+                vk: profile.profile.contacts.vk,
+                facebook: profile.profile.contacts.facebook,
+                instagram: profile.profile.contacts.instagram,
+                twitter: profile.profile.contacts.twitter,
+                website: profile.profile.contacts.website,
+                youtube: profile.profile.contacts.youtube,
+                mainLink: profile.profile.contacts.mainLink
             },
             aboutMe: profile.profile.aboutMe,
             userId: profile.profile.userId,
@@ -51,7 +49,6 @@ const ProfileDataForm: FC<PropsType> = ({profile, saveProfile, goToViewMode}) =>
                 <div className={styles.profileInfo__item}>
                     <TextField label='Имя'
                                margin="normal"
-                               type='fullName'
                                {...formik.getFieldProps('fullName')}
                     />
                 </div>
@@ -59,7 +56,6 @@ const ProfileDataForm: FC<PropsType> = ({profile, saveProfile, goToViewMode}) =>
                 <div className={styles.profileInfo__item}>
                     <TextField label='Обо мне'
                                margin="normal"
-                               type='aboutMe'
                                {...formik.getFieldProps('aboutMe')}
                     />
                 </div>
@@ -67,7 +63,6 @@ const ProfileDataForm: FC<PropsType> = ({profile, saveProfile, goToViewMode}) =>
                 <div className={styles.profileInfo__item}>
                     <TextField label='Мои профессиональные навыки'
                                margin="normal"
-                               type='lookingForAJobDescription'
                                {...formik.getFieldProps('lookingForAJobDescription')}
                     />
                 </div>
@@ -82,8 +77,15 @@ const ProfileDataForm: FC<PropsType> = ({profile, saveProfile, goToViewMode}) =>
                 </div>
                 {/*================*/}
                 <div className={styles.profileInfo__contacts}>
-                    {Object.entries(profile.profile.contacts).map(([key, value]) => {
-                        return <Contact key={key} contactTitle={key} contactValue={value}/>
+                    {Object.entries(profile.profile.contacts).map((item) => {
+                        // return <Contact key={key} contactTitle={key} contactValue={value}/>
+                        return <div key={item[0]} className={styles.profileInfo__contact}>
+                            <TextField key={item[0]}
+                                       label={item}
+                                       margin="normal"
+                                       {...formik.getFieldProps(`contacts.${item[0]}`)}
+                            />
+                        </div>
                     })}
                 </div>
             </FormGroup>

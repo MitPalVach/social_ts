@@ -14,10 +14,11 @@ const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS'
 const SAVE_PROFILE = 'SAVE_PROFILE'
 
 export type ProfileInfoResponseType = {
-    lookingForAJob?: boolean,
+    lookingForAJob?: boolean
     lookingForAJobDescription?: string
     fullName?: string
     aboutMe?: string
+    contacts?: ContactsType
 }
 let initialState = {
     postData: [
@@ -51,7 +52,15 @@ export type ProfileUserType = {
     status: string
 }
 export type ContactsType = {
-    [key: string]: string | null
+    // [key: string]: string | null
+    github: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
 }
 
 type InitStateType = typeof initialState
@@ -167,17 +176,15 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
         dispatch(setUpdateStatus(status))
     }
 }
-export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
+export const savePhoto = (file: File) => async (dispatch: Dispatch) => {
     let response = await profileApi.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
     }
 }
-export const saveProfile = (profile: ProfileInfoResponseType, userId: number) => async (dispatch: Dispatch) => {
+export const saveProfile = (profile: ProfileInfoResponseType) => async (dispatch: Dispatch, getState: () => AppStateType) => {
+    const userId = getState().auth.userId
     let response = await profileApi.saveProfile(profile)
-
-    console.log("response ", response)
-
     if (response.data.resultCode === 0) {
         // @ts-ignore
         dispatch(getUserProfile(userId))

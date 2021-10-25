@@ -22,7 +22,7 @@ const ProfileData: FC<PropsType> = ({profile, isAuth, goToEditMode}) => {
                 <b>Обо мне: </b> {profile.profile.aboutMe}
             </div>
             <div className={styles.profileInfo__item}>
-                <b>Поиск работы: </b> {profile.profile.lookingForAJob}
+                <b>Поиск работы: </b> {profile.profile.lookingForAJob ? 'да' : 'нет'}
             </div>
             <div className={styles.profileInfo__item}>
                 <b>Мои профессиональные навыки: </b> {profile.profile.lookingForAJobDescription}
