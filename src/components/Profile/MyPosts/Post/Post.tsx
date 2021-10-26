@@ -1,6 +1,5 @@
 import React from "react";
 import styles from './Post.module.css';
-// import avatar_to_all from './../../../../images/avatar_to_all.png'
 import {PostDataType} from "../../../../redux/store";
 const avatar_to_all = 'https://images.pexels.com/photos/1564839/pexels-photo-1564839.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
 

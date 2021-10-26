@@ -1,7 +1,5 @@
-// import ava1 from "../images/ava_1.png";
-// import ava2 from "../images/ava_2.png";
-// import ava3 from "../images/ava_3.png";
 const ava = 'https://cdn-icons-png.flaticon.com/512/12/12426.png'
+
 
 export type SidebarType = {
     id: number

@@ -18,16 +18,20 @@ type FormikErrorType = {
     email?: string
     password?: string
     rememberMe?: boolean
+    captchaUrl?: string
 }
 
 export const Login = () => {
     const dispatch = useDispatch()
     const isLoggedIn = useSelector<AppStateType, boolean>((state) => state.auth.isAuth)
+    const captchaUrl = useSelector<AppStateType, string | null>((state) => state.auth.captchaUrl)
+
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
-            rememberMe: false
+            rememberMe: false,
+            captchaUrl: '',
         },
         validate: (values) => {
             const errors: FormikErrorType = {};
@@ -44,7 +48,7 @@ export const Login = () => {
             return errors;
         },
         onSubmit: values => {
-            dispatch(login(values.email, values.password, values.rememberMe))
+            dispatch(login(values.email, values.password, values.rememberMe, values.captchaUrl)) // captcha
             formik.resetForm()
         },
     })
@@ -90,6 +94,12 @@ export const Login = () => {
                                           {...formik.getFieldProps('rememberMe')}
                                           checked={formik.values.rememberMe}
                         />
+
+                        {captchaUrl && <><img src={captchaUrl} alt="captcha"/>
+                            <TextField label='captcha' // captcha
+                                       margin="normal"
+                                       {...formik.getFieldProps('captchaUrl')} // captcha
+                            /></>}
                         <Button type={'submit'} variant={'contained'} color={'primary'}>
                             Войти
                         </Button>

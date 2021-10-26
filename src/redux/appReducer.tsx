@@ -8,11 +8,11 @@ export type AppInitialStateType = {
 }
 export type ActionsTypes = ReturnType<typeof successInitialized>
 
-let initialState = {
+let initialState: AppInitialStateType = {
     initialized: false,
 }
 
-const appReducer = (state: AppInitialStateType = initialState, action: ActionsTypes) => {
+const appReducer = (state: AppInitialStateType = initialState, action: ActionsTypes): AppInitialStateType => {
     switch (action.type) {
         case SUCCESS_INITIALIZED:
             return {

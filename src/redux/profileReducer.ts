@@ -3,6 +3,7 @@ import {profileApi} from "../api/api";
 import {Dispatch} from "redux";
 import {ThunkDispatch} from "redux-thunk";
 import {AppStateType} from "./reduxStore";
+import {v1} from "uuid";
 
 
 const ADD_POST = "ADD-POST"
@@ -22,10 +23,10 @@ export type ProfileInfoResponseType = {
 }
 let initialState = {
     postData: [
-        {message: 'Hi, how are you?', id: 1, likeCount: 12},
-        {message: 'What do you think about JS?', id: 2, likeCount: 22},
-        {message: 'I learn not only JS but and TS!', id: 3, likeCount: 42},
-        {message: 'Oh, it\'s cool', id: 4, likeCount: 23}
+        {message: 'Hi, how are you?', id: v1(), likeCount: 12},
+        {message: 'What do you think about JS?', id: v1(), likeCount: 22},
+        {message: 'I learn not only JS but and TS!', id: v1(), likeCount: 42},
+        {message: 'Oh, it\'s cool', id: v1(), likeCount: 23}
     ],
     // newPostText: '',
     profile: {
@@ -69,7 +70,7 @@ const profileReducer = (state: InitStateType = initialState, action: ActionsType
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
-                id: 5,
+                id: v1(),
                 message: action.newPostText,
                 likeCount: 0
             };
@@ -81,7 +82,7 @@ const profileReducer = (state: InitStateType = initialState, action: ActionsType
         case DELETE_POST: {
             return {
                 ...state,
-                postData: state.postData.filter(p => p.id !== action.postId)
+                // postData: state.postData.filter(p => p.id !== action.postId)
             }
         }
         case SET_USER_STATUS: {

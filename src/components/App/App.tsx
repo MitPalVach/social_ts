@@ -1,6 +1,6 @@
 import React, {ComponentType, Suspense} from 'react';
 import styles from './App.module.css';
-import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import Navbar from "../Navbar/Navbar";
 import News from "../News/News";
 import Music from "../Music/Music";
@@ -62,6 +62,7 @@ class App extends React.Component<PropsType, StateType> {
                             <Route path='/video' render={() => <Video/>}/>
                             <Route path='/settings' render={() => <Settings/>}/>
                             <Route path='/login' render={() => <Login/>}/>
+                            <Redirect from={'*'} to={'/profile'}/>
                         </div>
                     </div>
                 </div>

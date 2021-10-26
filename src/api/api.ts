@@ -40,7 +40,7 @@ export const profileApi = {
     updateStatus(status: string) {
         return instance.put(`profile/status/`, {status})
     },
-    savePhoto(photoFile: any) {     //   загрузка файла фото
+    savePhoto(photoFile: File) {     //   загрузка файла фото
         const formData = new FormData()
         formData.append('image', photoFile)
         return instance.put(`profile/photo/`, formData, {
@@ -60,10 +60,22 @@ export const authApi = {
     me() {
         return instance.get<AuthPropsType>(`auth/me`)
     },
-    login(email: string, password: string, rememberMe: boolean) {
-        return instance.post<AuthPropsType>(`auth/login`, {email, password, rememberMe})
+    login(email: string, password: string, rememberMe: boolean, captcha: string) {
+        return instance.post<AuthPropsType>(`auth/login`, {email, password, rememberMe, captcha}) // captcha
     },
     logout() {
         return instance.delete<AuthPropsType>(`auth/login`)
     },
 }
+
+// ====
+
+export const securityApi = {
+    getCaptcha() {
+        return instance.get(`security/get-captcha-url`)
+    },
+}
+
+
+
+

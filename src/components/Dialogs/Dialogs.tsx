@@ -17,6 +17,7 @@ const Dialogs: React.FC<PropsType> = (props) => {
 
     let addNewMessage = (values: any) => {
         props.sendMessage(values.newMessageBody)
+        values.newMessageBody = ''
     }
 
     return (

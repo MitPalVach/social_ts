@@ -9,6 +9,7 @@ type OwnProps = {}
 type MapStateToPropsType = {
     isAuth: boolean
     login: string | null
+    captchaUrl: string | null
 }
 type MapDispatchType = {
     logout: () => void
@@ -25,6 +26,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
         login: state.auth.login,
+        captchaUrl: state.auth.captchaUrl,
     }
 }
 export default connect<MapStateToPropsType, MapDispatchType, OwnProps, AppStateType>(mapStateToProps, {logout})(HeaderContainer);

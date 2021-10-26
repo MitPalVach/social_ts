@@ -21,17 +21,17 @@ type UsersPageType = {
     location: LocationType
 }
 type MessagesType = {
-    id: number
+    id: string
     message: string
 }
 type DialogsType = {
-    id: number
+    id: string
     name: string
     friendsAvatar: string
 }
 export type PostDataType = {
     message: string
-    id: number
+    id: string
     likeCount: number
 }
 export type SidebarType = {
@@ -59,13 +59,13 @@ export type RootStateType = {
     usersPage: UsersPageType
     auth: AuthType
 }
-export type StoreType = {
-    _state: RootStateType
-    _onChange: () => void
-    subscribe: (observer: () => void) => void
-    getState: () => RootStateType
-    dispatch: (action: ActionsTypes) => void
-}
+// export type StoreType = {
+//     _state: RootStateType
+//     _onChange: () => void
+//     subscribe: (observer: () => void) => void
+//     getState: () => RootStateType
+//     dispatch: (action: ActionsTypes) => void
+// }
 export type ActionsTypes =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof sendMessageAC>
