@@ -1,8 +1,9 @@
 import React, {ReactElement} from 'react';
 import styles from "./Users.module.css";
-import {UserType} from "../../redux/usersReducer";
+import {FilterType, UserType} from "../../redux/usersReducer";
 import Paginator from "../Common/Paginator/Paginator";
 import User from "./User";
+import UsersSearchForm from "./UsersSearchForm";
 
 
 type UsersType = {
@@ -11,6 +12,7 @@ type UsersType = {
     pageSize: number
     currentPage: number
     onPageChanged: (pageNumber: number) => void
+    onFilterChanged: (filter: FilterType) => void
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     isFetching: boolean
@@ -26,6 +28,7 @@ type Nullable<T> = T | null
 const Users = (props: UsersType): Nullable<ReactElement> => {
     return (
         <div className={styles.usersInner}>
+            <UsersSearchForm onFilterChanged={props.onFilterChanged}/>
             <Paginator totalItemsCount={props.totalUsersCount}
                        pageSize={props.pageSize}
                        currentPage={props.currentPage}

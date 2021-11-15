@@ -10,9 +10,9 @@ type UsersType = {
     portionSize: number
 }
 
-const Paginator = (props: UsersType): JSX.Element => {
+const Paginator: React.FC<UsersType> = (props): JSX.Element => {
     let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize)
-    let pages = []
+    let pages: number[] = []
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
