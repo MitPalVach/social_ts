@@ -14,12 +14,10 @@ import {compose} from "redux";
 import {initializeApp} from "../../redux/appReducer";
 import Preloader from "../Common/Preloader/Preloader";
 import {Login} from "../Login/Login";
-// import ProfileContainer from "../Profile/ProfileContainer";
-// import DialogsContainer from "../Dialogs/DialogsContainer";
-// import UsersContainer from "../Users/UsersContainer";
+import {UsersPage} from "../Users/UsersPage";
 const ProfileContainer = React.lazy(() => import('../Profile/ProfileContainer'));
 const DialogsContainer = React.lazy(() => import('../Dialogs/DialogsContainer'));
-const UsersContainer = React.lazy(() => import('../Users/UsersContainer'));
+// const UsersPage = React.lazy(()=> import('../Users/UsersPage'))
 
 
 type MapDispatchType = {
@@ -53,7 +51,7 @@ class App extends React.Component<PropsType, StateType> {
                                 <Switch>
                                     <Route path='/profile/:userId?' component={ProfileContainer}/>
                                     <Route path='/dialogs' component={DialogsContainer}/>
-                                    <Route path='/users' component={UsersContainer}/>
+                                    <Route path='/users' component={UsersPage}/>
                                 </Switch>
                             </Suspense>
                             <Route path='/news' render={() => <News/>}/>

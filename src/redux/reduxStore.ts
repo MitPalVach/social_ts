@@ -27,6 +27,3 @@ export const store = createStore(rootReducer, /* preloadedState, */ composeEnhan
 export type AppStateType = ReturnType<typeof rootReducer>
 export type RootDispatchType = Dispatch<Action<string>> & ThunkDispatch<AppStateType, string, AnyAction>;
 
-// export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
-// @ts-ignore
-// window.store = store
