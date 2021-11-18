@@ -60,7 +60,7 @@ class App extends React.Component<PropsType, StateType> {
                             <Route path='/video' render={() => <Video/>}/>
                             <Route path='/settings' render={() => <Settings/>}/>
                             <Route path='/login' render={() => <Login/>}/>
-                            <Redirect from={'*'} to={'/profile'}/>
+                            {/*<Redirect from={'*'} to={'/profile'}/>*/}
                         </div>
                     </div>
                 </div>

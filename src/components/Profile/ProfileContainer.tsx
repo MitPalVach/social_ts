@@ -37,9 +37,9 @@ const ProfileContainer = (props: PropsType) => {
     let userId = +props.match.params.userId;
     if (!userId) {
         userId = props.authorizedUserId || 0;
-        // if (!userId) {                               // раскомент
-        //     props.history.push('/login')
-        // }
+        if (!userId) {                               // раскомент
+            props.history.push('/login')
+        }
     }
     useEffect(() => {
         dispatch(getUserProfile(userId))
