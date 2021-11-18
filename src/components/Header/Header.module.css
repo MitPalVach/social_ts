@@ -1,6 +1,6 @@
 .header {
     grid-column: 1/6;
-    background: #ccc;
+    background: #C8DCFFFF;
     display: flex;
     justify-content: space-between;
     align-items: center;

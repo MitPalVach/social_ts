@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import {useFormik} from "formik";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import s from "../../App/App.module.css";
 
 
 type PropsType = {
@@ -43,7 +44,7 @@ const ProfileDataForm: FC<PropsType> = ({profile, saveProfile, goToViewMode}) =>
         <form onSubmit={formik.handleSubmit}>
             <FormGroup>
                 <div>
-                    <button type={'submit'}>сохранить</button>
+                    <button className={s.main_btn} type={'submit'}>сохранить</button>
                 </div>
                 {/*================*/}
                 <div className={styles.profileInfo__item}>

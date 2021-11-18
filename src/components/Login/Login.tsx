@@ -21,7 +21,7 @@ type FormikErrorType = {
     captchaUrl?: string
 }
 
-export const Login = () => {
+const Login = () => {
     const dispatch = useDispatch()
     const isLoggedIn = useSelector<AppStateType, boolean>((state) => state.auth.isAuth)
     const captchaUrl = useSelector<AppStateType, string | null>((state) => state.auth.captchaUrl)
@@ -109,3 +109,5 @@ export const Login = () => {
         </Grid>
     </Grid>
 }
+
+export default Login;

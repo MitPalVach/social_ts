@@ -1,23 +1,24 @@
 import React, {ComponentType, Suspense} from 'react';
 import styles from './App.module.css';
-import {BrowserRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom';
 import Navbar from "../Navbar/Navbar";
-import News from "../News/News";
-import Music from "../Music/Music";
-import Photo from "../Photo/Photo";
-import Video from "../Video/Video";
-import Settings from "../Settings/Settings";
 import HeaderContainer from "../Header/HeaderContainer";
 import {connect, Provider} from "react-redux";
 import {AppStateType, store} from "../../redux/reduxStore";
 import {compose} from "redux";
 import {initializeApp} from "../../redux/appReducer";
 import Preloader from "../Common/Preloader/Preloader";
-import {Login} from "../Login/Login";
-import {UsersPage} from "../Users/UsersPage";
+
+const Login = React.lazy(() => import('../Login/Login'));
 const ProfileContainer = React.lazy(() => import('../Profile/ProfileContainer'));
 const DialogsContainer = React.lazy(() => import('../Dialogs/DialogsContainer'));
-// const UsersPage = React.lazy(()=> import('../Users/UsersPage'))
+const UsersPage = React.lazy(() => import('../Users/UsersPage'));
+const ChatPage = React.lazy(() => import('../../pages/Chat/ChatPage'));
+const News = React.lazy(() => import('../News/News'));
+const Music = React.lazy(() => import('../Music/Music'));
+const Photo = React.lazy(() => import('../Photo/Photo'));
+const Video = React.lazy(() => import('../Video/Video'));
+const Settings = React.lazy(() => import('../Settings/Settings'));
 
 
 type MapDispatchType = {
@@ -49,17 +50,18 @@ class App extends React.Component<PropsType, StateType> {
                         <div className={styles.content__inner}>
                             <Suspense fallback={<Preloader/>}>
                                 <Switch>
+                                    <Route path='/login' component={Login}/>
                                     <Route path='/profile/:userId?' component={ProfileContainer}/>
                                     <Route path='/dialogs' component={DialogsContainer}/>
                                     <Route path='/users' component={UsersPage}/>
+                                    <Route path='/chat' component={ChatPage}/>
+                                    <Route path='/news' component={News}/>
+                                    <Route path='/music' component={Music}/>
+                                    <Route path='/photo' component={Photo}/>
+                                    <Route path='/video' component={Video}/>
+                                    <Route path='/settings' component={Settings}/>
                                 </Switch>
                             </Suspense>
-                            <Route path='/news' render={() => <News/>}/>
-                            <Route path='/music' render={() => <Music/>}/>
-                            <Route path='/photo' render={() => <Photo/>}/>
-                            <Route path='/video' render={() => <Video/>}/>
-                            <Route path='/settings' render={() => <Settings/>}/>
-                            <Route path='/login' render={() => <Login/>}/>
                             {/*<Redirect from={'*'} to={'/profile'}/>*/}
                         </div>
                     </div>

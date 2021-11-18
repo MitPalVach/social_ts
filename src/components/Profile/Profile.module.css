@@ -13,16 +13,3 @@
     resize: none;
     padding: 4px 10px;
 }
-
-.profileMessages__btn {
-    border: none;
-    font-size: 12px;
-    padding: 6px 12px;
-    border-radius: 4px;
-    background: #535353;
-    cursor: pointer;
-    color: white;
-    text-transform: uppercase;
-    font-weight: 500;
-    margin: 0 0 30px;
-}

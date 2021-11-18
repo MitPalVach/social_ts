@@ -2,7 +2,7 @@
     padding: 10px;
     grid-column: 1/2;
     grid-row-start: 3;
-    background: #535353;
+    background: linear-gradient(45deg, #ffffff, #c8dcff);
 }
 
 .navbarItem {
@@ -22,13 +22,13 @@
     line-height: 20px;
     font-weight: 500;
     text-decoration: none;
-    color: white;
+    color: #000000;
     padding: 10px;
 }
 
 
 .navbarItem a.active {
-    background: #cccccc;
+    background: #81afff;
     color: #000;
     border-radius: 4px;
 }

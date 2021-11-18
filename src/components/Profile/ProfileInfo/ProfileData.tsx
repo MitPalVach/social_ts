@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {ProfileUserType} from "../../../redux/profileReducer";
 import styles from "./ProfileInfo.module.css";
 import Contact from "./Contact";
+import s from "../../App/App.module.css";
 
 
 type PropsType = {
@@ -13,7 +14,7 @@ const ProfileData: FC<PropsType> = ({profile, isAuth, goToEditMode}) => {
     return (
         <div className={styles.profileInfo__items}>
             {isAuth && <div>
-                <button className={styles.profileData__changeBtn} onClick={goToEditMode}>редактировать данные</button>
+                <button className={s.main_btn} onClick={goToEditMode}>редактировать данные</button>
             </div>}
             <div className={styles.profileInfo__item}>
                 <b>Имя: </b> {profile.profile.fullName}

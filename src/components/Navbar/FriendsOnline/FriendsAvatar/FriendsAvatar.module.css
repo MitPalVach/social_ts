@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    background: #cccccc;
+    background: #C8DCFFFF;
     padding: 5px;
     border-radius: 6px;
     cursor: pointer;
@@ -11,12 +11,7 @@
 }
 
 .fOnline__inner:hover {
-    background: #000;
-}
-
-.fOnline__inner:hover .fOnline__name {
-    color: #ffffff;
-
+    background: #fff;
 }
 
 .fOnline__ava {

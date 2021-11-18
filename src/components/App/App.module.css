@@ -18,20 +18,31 @@
   column-gap: 10px;
   row-gap: 5px;
 }
-
+/*C8DCFFFF*/
 .content__wrapper {
   grid-column: 2/6;
   grid-row: 3/5;
-  background: #535353;
+  background: linear-gradient(45deg, #ffffff, #c8dcff);
   padding: 10px;
   margin-bottom: 10px;
 }
 
 .content__inner {
-  background: #cccccc;
   padding: 10px;
 }
 
+.main_btn {
+  border: none;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: #81afff;
+  cursor: pointer;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 0 0 30px;
+}
 
 
 

@@ -3,6 +3,7 @@ import {Form, Formik, Field} from 'formik';
 import {FilterType} from "../../redux/usersReducer";
 import {useSelector} from "react-redux";
 import {getUsersFiler} from "../../redux/usersSelectors";
+import s from "../App/App.module.css";
 
 
 const usersSearchFormValidate = (values: any) => {
@@ -48,7 +49,9 @@ const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
                             <option value="true">Only followed</option>
                             <option value="false">Only unfollowed</option>
                         </Field>
-                        <button type="submit" disabled={isSubmitting}>
+                        <button className={s.main_btn}
+                                type="submit"
+                                disabled={isSubmitting}>
                             Поиск
                         </button>
                     </Form>

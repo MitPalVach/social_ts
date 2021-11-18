@@ -25,6 +25,11 @@ const Navbar:React.FC = () => {
             </div>
             <div className={styles.navbarItem}>
                 <NavLink className={styles.navbarItem__link} activeClassName={styles.active}
+                   to={"/chat"} >
+                    Чат</NavLink>
+            </div>
+            <div className={styles.navbarItem}>
+                <NavLink className={styles.navbarItem__link} activeClassName={styles.active}
                    to={"/news"} >
                     Новости</NavLink>
             </div>
