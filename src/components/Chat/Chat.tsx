@@ -1,11 +1,15 @@
 import React from 'react';
+import Messages from "./Messages/Messages";
+import AddMessageForm from "./AddMessageForm/AddMessageForm";
 
 
-const Chat = () => {
+const Chat: React.FC = () => {
+
+
     return (
         <div>
-            {/*<Messages/>*/}
-            {/*<AddMessageForm/>*/}
+            <Messages/>
+            <AddMessageForm/>
         </div>
     );
 };
